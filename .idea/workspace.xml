@@ -7,7 +7,6 @@
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +73,7 @@
       <updated>1730342408221</updated>
       <workItem from="1730342409329" duration="888000" />
       <workItem from="1730388294827" duration="461000" />
-      <workItem from="1730394602878" duration="575000" />
+      <workItem from="1730394602878" duration="977000" />
     </task>
     <servers />
   </component>
