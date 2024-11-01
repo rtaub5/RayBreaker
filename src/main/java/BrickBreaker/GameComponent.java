@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameComponent extends JComponent {
     private Ball ball;
@@ -27,8 +28,20 @@ public class GameComponent extends JComponent {
         setBorder(new LineBorder(Color.DARK_GRAY, 1)); //
         initMouseListener();
         ball = new Ball(300, 400, 15, 15);
-        bricks = new ArrayList<Brick>();
         paddle = new Paddle(250, paddleY, 120, 10);
+        bricks = new ArrayList<>();
+        generateBricks();
+    }
+
+    private void generateBricks() {
+        Random random = new Random();
+        int numBricks = 5 + random.nextInt(6); // random num between 5 and 15
+        for (int i = 0; i < numBricks; i++) {
+            // Randomize location within upper section of component
+            int x = 50 + random.nextInt(500);
+            int y = random.nextInt(paddleY - 75); // random num between 0 and 350
+            bricks.add(new Brick(x, y, 80, 35));
+        }
     }
 
     public void moveBall() {
@@ -88,6 +101,11 @@ public class GameComponent extends JComponent {
         g.fillOval((int)ball.getX(), (int)ball.getY(), (int)ball.getWidth(), (int)ball.getHeight()); // Ball
 
         // Draw bricks
+        g.setColor(Color.blue);
+        for (Brick b : bricks) {
+            g.fillRect(b.x, b.y, b.width, b.height);
+        }
+
         // - randomize number of bricks between 5 and 10
         // - randomize their location somewhere above the paddle
     }
