@@ -1,4 +1,6 @@
-package BrickBreaker;
+package BrickBreaker.controller;
+
+import BrickBreaker.view.GameComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,6 +75,7 @@ public class GameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //controller.startTimer(timer);
+                timer.start();
             }
         });
 
@@ -80,6 +83,7 @@ public class GameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //controller.stopTimer(timer);
+                timer.stop();
             }
         });
     }

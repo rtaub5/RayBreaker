@@ -1,4 +1,9 @@
-package BrickBreaker;
+package BrickBreaker.view;
+
+import BrickBreaker.model.Ball;
+import BrickBreaker.model.Brick;
+import BrickBreaker.model.Game;
+import BrickBreaker.model.Paddle;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -9,10 +14,13 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class GameComponent extends JComponent {
-    private Ball ball;
-    private ArrayList<Brick> bricks;
-    private Paddle paddle;
-    private final int paddleY = 415;
+  //  private Ball ball;
+  //  private ArrayList<Brick> bricks;
+  //   private Paddle paddle;
+     private Game game;
+     private final int paddleY = 415;
+     private int currX = 300;
+     private int currY = 400;
     /*
     Has:
         - paddle: brick that moves with cursor along horizontal line only
@@ -26,13 +34,14 @@ public class GameComponent extends JComponent {
         this.setOpaque(true);
         setBorder(new LineBorder(Color.DARK_GRAY, 1)); //
         initMouseListener();
-        ball = new Ball(300, 400, 15, 15);
-        bricks = new ArrayList<Brick>();
-        paddle = new Paddle(250, paddleY, 120, 10);
+        game = new Game();
+        game.ball = new Ball(currX, currY, 15);
+        game.bricks = new ArrayList<Brick>();
+        game.paddle = new Paddle(250, paddleY, 120, 10);
     }
 
     public void moveBall() {
-
+        game.moveBall();
     }
 
     private void initMouseListener() {
@@ -81,12 +90,10 @@ public class GameComponent extends JComponent {
 
         // Draw Paddle
         g.setColor(Color.DARK_GRAY);
-        g.fillRect((int)paddle.getX(), (int)paddle.getY(), (int)paddle.getWidth(), (int)paddle.getHeight()); // Paddle at the bottom
-
+        g.fillRect((int)game.paddle.getX(), (int)game.paddle.getY(), (int)game.paddle.getWidth(), (int)game.paddle.getHeight()); // Paddle at the bottom
         // Draw ball
         g.setColor(Color.RED);
-        g.fillOval((int)ball.getX(), (int)ball.getY(), (int)ball.getWidth(), (int)ball.getHeight()); // Ball
-
+        g.fillOval((int)game.ball.getX(), (int)game.ball.getY(), (int)game.ball.getWidth(), (int)game.ball.getHeight()); // Ball
         // Draw bricks
         // - randomize number of bricks between 5 and 10
         // - randomize their location somewhere above the paddle

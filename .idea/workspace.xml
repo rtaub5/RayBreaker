@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/view/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/controller/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
-    "git-widget-placeholder": "adinaDraft",
+    "git-widget-placeholder": "rockicontrollerbranch",
     "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -70,10 +75,26 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/rocki/IdeaProjects/RAYBreaker/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BrickBreaker.Main" />
+      <module name="BrickBreaker.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BrickBreaker.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="RAYBreaker" />
       <method v="2">
@@ -87,6 +108,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -116,6 +142,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
           <line>18</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/BrickBreaker/view/GameComponent.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/BrickBreaker/view/GameComponent.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/BrickBreaker/controller/GameFrame.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

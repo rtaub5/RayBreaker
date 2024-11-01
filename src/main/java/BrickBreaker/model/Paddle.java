@@ -1,4 +1,4 @@
-package BrickBreaker;
+package BrickBreaker.model;
 
 import java.awt.*;
 

@@ -1,4 +1,7 @@
-package BrickBreaker;
+package BrickBreaker.controller;
+
+import BrickBreaker.view.GameComponent;
+
 public class GameController {
 
         private final GameFrame model;
