@@ -1,51 +1,125 @@
 package BrickBreaker.controller;
 
+import BrickBreaker.model.Game;
 import BrickBreaker.view.GameComponent;
+import BrickBreaker.view.GameFrame;
+
+import javax.swing.*;
+import java.awt.event.*;
 
 public class GameController {
+    private final GameFrame model;
+    private final GameComponent view;
+    private final Game game;
 
-        private final GameFrame model;
-        private final GameComponent view;
+    public GameController(GameFrame model, GameComponent view) {
+        this.model = model;
+        this.view = view;
+        game = view.getGame();
+    }
+
+    public void startGame() {
+        //call all starter methods
+        //start timer to control view.ball
+        initializePaddle();
+        game.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
+        startTimer();
+    }
+
+    public void initializePaddle() {
+        //initialize mouseEvent for view.paddle
+        KeyListener keyListener = new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    game.getPaddle().setDirection(true);
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    game.getPaddle().setDirection(false);
+                }
+                startPaddleTimer();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                model.paddleTimer.stop();
+            }
+        };
+
+        view.addKeyListener(keyListener);
+        view.setFocusable(true);
+        view.requestFocusInWindow();
+    }
+
+    private void startPaddleTimer() {
+        if(model.paddleTimer == null || !model.paddleTimer.isRunning()) {
+            model.paddleTimer = new Timer(7, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(game.getPaddle().getX() <= 0 || game.getPaddle().getX() - game.getPaddle().getWidth() >= view.getWidth()) {
+                        game.getPaddle().changeDirection();
+                    }
+                    game.getPaddle().move();
+                    view.repaint();
+                }
+            });
+        }
+        model.paddleTimer.start();
+    }
 
 
-        public GameController(GameFrame model, GameComponent view) {
-                this.model = model;
-                this.view = view;
+    public void moveBall(int x, int y) {
+        int intersect = game.intersects(x, y);
+        if(intersect > game.getBricks().size() ) {
+            game.getBall().moveBall();
+        }
+        else if(intersect < 0) { //ball hit paddle
+            game.setBallAngle();
+        }
+        else {
+            //recalculate angle if it did intersect
+            game.removeBrick(intersect);
+            game.setBallAngle();
         }
 
-        public void startGame() {
-                //call all starter methods
-                //start timer to control view.ball
-        }
+        view.repaint();
+    }
 
-        public void initializePaddle() {
-                //initialize mouseEvent for view.paddle
-        }
+    private double calculateAngleWall() {
+        //reset view.ball.angle
+        return 0;
+    }
 
-        public void moveBall(int x, int y) { //pass in view.getX() and getY on screen
-                //move ball
-                //check view.ball.intersects()
-                //if true: determineObject(new x and y)
-        }
+    private double calculateAngleBrick(int x, int y) {
+        //reset view.ball.angle
+        return 0;
+    }
 
-        private void determineObject(int x, int y) {
-                //what's at x y. calculate angle based on that
-                //if bottom wall: gameOver()
-        }
+    public void gameOver() {
+        //stop timers, display popup
+    }
 
-        private double calculateAngleWall() {
-                //reset view.ball.angle
-                return 0;
-        }
+    public void startTimer() {
+        model.timer = new Timer(100, new ActionListener() {
 
-        private double calculateAngleBrick(int x, int y) {
-                //reset view.ball.angle
-                return 0;
-        }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                moveBall((int) view.getGame().getBall().getX(), (int) view.getGame().getBall().getY());
+            }
+        });
 
-        public void gameOver() {
-                //stop timers, display popup
-        }
+        model.timer.start();
+    }
+
+    public void stopTimer() {
+        model.timer.stop();
+    }
 
         /*
         Game logic:
