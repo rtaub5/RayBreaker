@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/controller/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Ball.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Paddle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/view/GameComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/view/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Ball.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/model/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Paddle.java" beforeDir="false" />
-    </list>
+    <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +52,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "draft",
+    "git-widget-placeholder": "yaeledits",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/yaelgreen/IdeaProjects/RayBreaker",
     "node.js.detected.package.eslint": "true",
@@ -96,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730342408221</updated>
       <workItem from="1730342409329" duration="62000" />
-      <workItem from="1730599636993" duration="8460000" />
+      <workItem from="1730599636993" duration="9150000" />
     </task>
     <servers />
   </component>

@@ -94,8 +94,4 @@ public class GameComponent extends JComponent {
             g.drawRect((int) curr.getX(), (int) curr.getY(), brickWidth, brickHeight);
         }
     }
-
-    public void eraseRect(Brick brick) {
-        getGraphics().clearRect((int) brick.getX(), (int) brick.getY(), brickWidth, brickHeight);
-    }
 }

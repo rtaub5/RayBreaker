@@ -38,6 +38,10 @@ public class Game {
         bricks.add(brick);
     }
 
+    public void removeBrick(int ix) {
+        bricks.remove(ix);
+    }
+
     public List<Brick> getBricks() {
         return bricks;
     }
@@ -70,12 +74,17 @@ public class Game {
     //TODO: should this go in ball and pass in list of bricks?
     public int intersects(int x, int y) {
         int retVal = bricks.size() + 1;
-        for (int i = 0; i < bricks.size(); i++) {
-            if(ball.intersects(bricks.get(i))) {
-               // bricks.remove(i);
-                retVal = i;
+        if(ball.intersects(paddle)) {
+            retVal = -1;
+        }
+        else {
+            for (int i = 0; i < bricks.size(); i++) {
+                if(ball.intersects(bricks.get(i))) {
+                    retVal = i;
+                }
             }
         }
+
         return retVal;
     }
 

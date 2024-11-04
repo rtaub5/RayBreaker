@@ -74,15 +74,17 @@ public class GameController {
     }
 
 
-    public void moveBall(int x, int y) { //pass in view.getX() and getY on screen
+    public void moveBall(int x, int y) {
         int intersect = game.intersects(x, y);
         if(intersect > game.getBricks().size() ) {
             game.getBall().moveBall();
         }
+        else if(intersect < 0) { //ball hit paddle
+            game.setBallAngle();
+        }
         else {
             //recalculate angle if it did intersect
-            //TODO: erase brick from view and repaint
-            view.eraseRect(game.getBricks().get(intersect));
+            game.removeBrick(intersect);
             game.setBallAngle();
         }
 
@@ -104,7 +106,7 @@ public class GameController {
     }
 
     public void startTimer() {
-        model.timer = new Timer(500, new ActionListener() {
+        model.timer = new Timer(100, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
