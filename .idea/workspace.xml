@@ -4,6 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="" />
+=======
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -12,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BrickBreaker/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BrickBreaker/Paddle.java" afterDir="false" />
     </list>
+>>>>>>> main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +26,8 @@
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< HEAD
+=======
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -34,6 +40,7 @@
       </state>
     </system>
   </component>
+>>>>>>> main
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -44,6 +51,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "YCGreen"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:rtaub5/RayBreaker.git",
+    "accountId": "71c2031f-30e6-466f-9650-8c2abf88495b"
+  }
+}]]></component>
+=======
+>>>>>>> main
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -57,6 +79,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+<<<<<<< HEAD
+    "Gradle.RayBreaker [:BrickBreaker.Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "yaeledits",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/yaelgreen/IdeaProjects/RayBreaker",
+=======
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -64,6 +95,7 @@
     "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "adinaDraft",
     "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
+>>>>>>> main
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,6 +105,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+<<<<<<< HEAD
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+=======
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="RAYBreaker" />
@@ -87,6 +128,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+>>>>>>> main
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,10 +138,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730342408221</updated>
+<<<<<<< HEAD
+      <workItem from="1730342409329" duration="62000" />
+      <workItem from="1730599636993" duration="9150000" />
+=======
       <workItem from="1730342409329" duration="888000" />
       <workItem from="1730388294827" duration="461000" />
       <workItem from="1730394602878" duration="1111000" />
       <workItem from="1730419580559" duration="1527000" />
+>>>>>>> main
     </task>
     <servers />
   </component>

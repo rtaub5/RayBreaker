@@ -1,5 +1,8 @@
 package BrickBreaker;
 
+import BrickBreaker.model.Ball;
+import BrickBreaker.model.Brick;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -26,7 +29,7 @@ public class GameComponent extends JComponent {
         this.setOpaque(true);
         setBorder(new LineBorder(Color.DARK_GRAY, 1)); //
         initMouseListener();
-        ball = new Ball(300, 400, 15, 15);
+        ball = new Ball(300, 400, 15);
         bricks = new ArrayList<Brick>();
         paddle = new Paddle(250, paddleY, 120, 10);
     }
