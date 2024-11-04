@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class Paddle extends Rectangle {
 
+
     private boolean direction;
 
     public Paddle(int x, int y, int width, int height) {

@@ -1,11 +1,9 @@
 package BrickBreaker.view;
 
-import BrickBreaker.controller.GameController;
 import BrickBreaker.model.Ball;
 import BrickBreaker.model.Brick;
 import BrickBreaker.model.Game;
 import BrickBreaker.model.Paddle;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -14,6 +12,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
+
+
+
+
 
 public class GameComponent extends JComponent {
     //  private Ball ball;
@@ -30,6 +32,7 @@ public class GameComponent extends JComponent {
     private final int brickHeight = 20;
     private final int brickWidth = 40;
 
+
     /*
     Has:
         - paddle: brick that moves with cursor along horizontal line only
@@ -41,16 +44,71 @@ public class GameComponent extends JComponent {
     public GameComponent() {
         setBackground(Color.BLACK);
         this.setOpaque(true);
-        setBorder(new LineBorder(Color.DARK_GRAY, 1));
+
+        setBorder(new LineBorder(Color.DARK_GRAY, 1)); //
+        initMouseListener();
+
         game = new Game();
-        //TODO: move all this to be default game initialization in constructor?
-        game.setBall(new Ball(currX, currY, 15));
-        game.setBricks(new ArrayList<Brick>());
-        game.setPaddle(new Paddle(250, paddleY, 120, 10));
-
-
+        game.ball = new Ball(currX, currY, 15);
+        game.bricks = new ArrayList<Brick>();
+        game.paddle = new Paddle(250, paddleY, 120, 10);
 
     }
+
+    public void moveBall() {
+        game.moveBall();
+    }
+
+    private void initMouseListener() {
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+    }
+
+//        setBorder(new LineBorder(Color.DARK_GRAY, 1));
+//        game = new Game();
+//        //TODO: move all this to be default game initialization in constructor?
+//        game.setBall(new Ball(currX, currY, 15));
+//        game.setBricks(new ArrayList<Brick>());
+//        game.setPaddle(new Paddle(250, paddleY, 120, 10));
+
+
+
+
 
     public Game getGame() {
         return game;
@@ -71,12 +129,14 @@ public class GameComponent extends JComponent {
     } */
 
 
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         // Draw Paddle
         g.setColor(Color.DARK_GRAY);
+
         g.fillRect((int) game.getPaddle().getX(), (int) game.getPaddle().getY(),
                 (int) game.getPaddle().getWidth(), (int) game.getPaddle().getHeight()); // Paddle at the bottom
         // Draw ball
@@ -95,3 +155,4 @@ public class GameComponent extends JComponent {
         }
     }
 }
+

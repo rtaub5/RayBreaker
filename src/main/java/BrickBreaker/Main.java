@@ -1,6 +1,8 @@
 package BrickBreaker;
 
-import BrickBreaker.view.GameFrame;
+import BrickBreaker.controller.GameFrame;
+
+
 
 public class Main {
     public static void main(String[] args) {

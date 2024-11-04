@@ -6,13 +6,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private Ball ball;
-    private List<Brick> bricks;
-    private Paddle paddle;
+    public Ball ball;
+    public List<Brick> bricks;
+    public Paddle paddle;
+
     private int ballX = 300;
     private int ballY = 400;
     private int ballRadius = 15;
     private int paddleY = 415;
+
     private final Random rand = new Random();
 
 
@@ -103,3 +105,4 @@ public class Game {
     }
 
 }
+
