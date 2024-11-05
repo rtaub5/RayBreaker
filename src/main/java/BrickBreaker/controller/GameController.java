@@ -11,6 +11,7 @@ public class GameController {
     private final GameFrame model;
     private final GameComponent view;
     private final Game game;
+    private boolean isRunning = false;
 
     public GameController(GameFrame model, GameComponent view) {
         this.model = model;
@@ -20,10 +21,23 @@ public class GameController {
 
     public void startGame() {
         //call all starter methods
+        //call all starter methods
         //start timer to control view.ball
-        initializePaddle();
-        game.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
-        startTimer();
+        if(!isRunning) {
+            view.getGame().getBall().setX(200);
+            view.getGame().getBall().setY(200);
+            initializePaddle();
+            game.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
+            startTimer();
+        }
+        else {
+            //TODO: shouldn't have to reinitialize but do
+            initializePaddle();
+            startTimer();
+        }
+
+        isRunning = true;
+
     }
 
     public void initializePaddle() {
@@ -59,7 +73,7 @@ public class GameController {
 
     private void startPaddleTimer() {
         if(model.paddleTimer == null || !model.paddleTimer.isRunning()) {
-            model.paddleTimer = new Timer(7, new ActionListener() {
+            model.paddleTimer = new Timer(5, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(game.getPaddle().getX() <= 0 || game.getPaddle().getX() - game.getPaddle().getWidth() >= view.getWidth()) {
@@ -85,10 +99,16 @@ public class GameController {
             game.getBall().moveBall();
 
         }
-        else if (intersect >= 0) {
+        else if (intersect >= 0 && intersect <= game.getBricks().size()) { //intersected with brick
             //recalculate angle if it did intersect
             game.removeBrick(intersect);
             game.setBallAngle();
+        }
+        else if(intersect == -2) { //hit bottom wall
+            gameOver();
+        }
+        else if(intersect == -3) {
+            game.getBall().hitsWall(x,y);
         }
 
         view.repaint();
@@ -99,13 +119,17 @@ public class GameController {
         return 0;
     }
 
-    private double calculateAngleBrick(int x, int y) {
-        //reset view.ball.angle
-        return 0;
-    }
-
     public void gameOver() {
         //stop timers, display popup
+        isRunning = false;
+        stopTimer();
+        game.clearBricks();
+        view.repaint();
+        int restart = JOptionPane.showConfirmDialog(model,
+                "Would you like to play again?", "Game Over", JOptionPane.YES_NO_OPTION);
+        if(restart == JOptionPane.YES_OPTION) {
+            startGame();
+        }
     }
 
     public void startTimer() {
@@ -121,9 +145,10 @@ public class GameController {
     }
 
     public void stopTimer() {
-        model.timer.stop();
+        if (model.timer != null && model.timer.isRunning()) {
+            model.timer.stop();
+        }
     }
-
         /*
         Game logic:
             - Ball begins somewhere pointed in some direction and keeps moving

@@ -43,14 +43,6 @@ public class GameFrame extends JFrame {
         pane.add(title, BorderLayout.PAGE_START);
         pane.add(component, BorderLayout.CENTER);
 
-       /* timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // This method will be called every second
-                controller.moveBall((int) component.getGame().getBall().getX(), (int) component.getGame().getBall().getY());
-            }
-        }); */
-
         // Panels to hold buttons
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel buttonPanel = new JPanel(new BorderLayout());

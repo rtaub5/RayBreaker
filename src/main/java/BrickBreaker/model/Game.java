@@ -9,10 +9,6 @@ public class Game {
     public Ball ball;
     public List<Brick> bricks;
     public Paddle paddle;
-
-    private int ballX = 300;
-    private int ballY = 400;
-    private int ballRadius = 15;
     private int paddleY = 415;
 
     private final Random rand = new Random();
@@ -74,14 +70,18 @@ public class Game {
     }
 
     //TODO: should this go in ball and pass in list of bricks?
+
     public int intersects(int x, int y) {
         int retVal = bricks.size() + 1;
         if(ball.intersects(paddle)) {
             retVal = -1;
         }
-        else if (positionIsWall(x, y) == 0)
+        else if (positionIsWall(x, y) == 1)
         {
-            ball.hitsWall(x, y);
+            // ball.hitsWall(x, y);
+            retVal = -3;
+        }
+        else if(positionIsWall(x, y) == -1) {
             retVal = -2;
         }
         else {
@@ -95,17 +95,19 @@ public class Game {
         return retVal;
     }
 
+
     private int positionIsWall(int x, int y)
     {
+        int retVal = 0;
         if (x <= 1 || y <= 1 || x >= 600)
         {
-            return 0;
+            return 1; //hit wall
         }
         else if (y >= 525)
         {
-            System.out.println("GAME OVER");
+            retVal = -1;
         }
-        return -1;
+        return retVal;
     }
 
     public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
@@ -136,6 +138,10 @@ public class Game {
         ball.setAngle(angle);
 
 
+    }
+
+    public void clearBricks() {
+        bricks.clear();
     }
 
 }
