@@ -18,9 +18,6 @@ import java.util.Random;
 
 
 public class GameComponent extends JComponent {
-    //  private Ball ball;
-    //  private ArrayList<Brick> bricks;
-    //   private Paddle paddle;
     private Game game;
     private final int paddleY = 415;
     private int currX = 200;
@@ -99,12 +96,8 @@ public class GameComponent extends JComponent {
         });
     }
 
-//        setBorder(new LineBorder(Color.DARK_GRAY, 1));
-//        game = new Game();
-//        //TODO: move all this to be default game initialization in constructor?
-//        game.setBall(new Ball(currX, currY, 15));
-//        game.setBricks(new ArrayList<Brick>());
-//        game.setPaddle(new Paddle(250, paddleY, 120, 10));
+    //TODO: move all this to be default game initialization in constructor?
+
 
 
 
@@ -113,20 +106,6 @@ public class GameComponent extends JComponent {
     public Game getGame() {
         return game;
     }
-
-  /*  public void initializeBricks() {
-        int rows = getWidth() / brickWidth;
-        int cols = getHeight() / brickHeight / 2;
-
-        for (int y = 0; y < cols; y++) {
-            for(int x = 0; x < rows; x++) {
-                game.addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
-                x += rand.nextInt(brickWidth);
-            }
-            y += rand.nextInt(brickHeight);
-        }
-
-    } */
 
 
 
@@ -143,10 +122,6 @@ public class GameComponent extends JComponent {
         g.setColor(Color.RED);
         g.fillOval((int) game.getBall().getX(), (int) game.getBall().getY(),
                 (int) game.getBall().getWidth(), (int) game.getBall().getHeight()); // Ball
-        // Draw bricks
-        // - randomize number of bricks between 5 and 10
-       // initializeBricks();
-        // - randomize their location somewhere above the paddle
 
         g.setColor(Color.BLUE);
         for (int i = 0; i < game.getBricks().size(); i++) {
