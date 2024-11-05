@@ -103,6 +103,9 @@ public class GameController {
             //recalculate angle if it did intersect
             game.removeBrick(intersect);
             game.setBallAngle();
+            if(game.getBricks().isEmpty()) {
+                gameOver();
+            }
         }
         else if(intersect == -2) { //hit bottom wall
             gameOver();
