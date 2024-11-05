@@ -55,9 +55,9 @@ public class Game {
     public void moveBall() {
         if ((!(ball.getX() == 0)) && (!(ball.getX() == 600)) && (!(ball.getY() == 600))&& (!(ball.getY() == 0)))
             ball.moveBall();
-        else if(ball.getY() > paddleY) {
-            endGame();
-        }
+        //else if(ball.getY() > paddleY) {
+          //  endGame(); this logic is handled in controller
+        //}
     }
 
     public void setBallAngle() {
@@ -65,9 +65,9 @@ public class Game {
         ball.setAngle(ball.getAngle() * -1);
     }
 
-    private void endGame() {
+  /* private void endGame() {
 
-    }
+    } */
 
     //TODO: should this go in ball and pass in list of bricks?
 
@@ -76,13 +76,13 @@ public class Game {
         if(ball.intersects(paddle)) {
             retVal = -1;
         }
+        else if(positionIsWall(x, y) == -1) {
+            retVal = -2;
+        }
         else if (positionIsWall(x, y) == 1)
         {
             // ball.hitsWall(x, y);
             retVal = -3;
-        }
-        else if(positionIsWall(x, y) == -1) {
-            retVal = -2;
         }
         else {
             for (int i = 0; i < bricks.size(); i++) {
