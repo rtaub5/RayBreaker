@@ -79,6 +79,11 @@ public class Game {
         if(ball.intersects(paddle)) {
             retVal = -1;
         }
+        else if (positionIsWall(x, y) == 0)
+        {
+            ball.hitsWall(x, y);
+            retVal = -2;
+        }
         else {
             for (int i = 0; i < bricks.size(); i++) {
                 if(ball.intersects(bricks.get(i))) {
@@ -88,6 +93,19 @@ public class Game {
         }
 
         return retVal;
+    }
+
+    private int positionIsWall(int x, int y)
+    {
+        if (x <= 1 || y <= 1 || x >= 600)
+        {
+            return 0;
+        }
+        else if (y >= 525)
+        {
+            System.out.println("GAME OVER");
+        }
+        return -1;
     }
 
     public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
@@ -101,6 +119,22 @@ public class Game {
             }
             y += rand.nextInt(3);
         }
+
+    }
+
+    public void setAngleFromPaddle(int x)
+    {
+
+        int position = Math.abs(x - paddle.x);
+        int half = paddle.width / position;
+        double angle = 180/position * 10;
+        if (half < 2)
+        {
+            angle += 89;
+        }
+
+        ball.setAngle(angle);
+
 
     }
 

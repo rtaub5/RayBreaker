@@ -79,10 +79,13 @@ public class GameController {
         if(intersect > game.getBricks().size() ) {
             game.getBall().moveBall();
         }
-        else if(intersect < 0) { //ball hit paddle
+        else if(intersect == -1) { //ball hit paddle or wall
             game.setBallAngle();
+            game.setAngleFromPaddle(x);
+            game.getBall().moveBall();
+
         }
-        else {
+        else if (intersect >= 0) {
             //recalculate angle if it did intersect
             game.removeBrick(intersect);
             game.setBallAngle();

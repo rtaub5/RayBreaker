@@ -12,7 +12,7 @@ public class Ball extends Ellipse2D.Double
     {
         super(x, y, radius, radius);
         this.angle = 90;
-        speed = 10;
+        speed = 20;
     }
 
     public double getAngle()
@@ -37,5 +37,24 @@ public class Ball extends Ellipse2D.Double
         y = (int) (y + yDirection);
 
 
+    }
+
+    public int hitsWall(int x, int y)
+    {
+        if (x <= 1 || x >= 600)
+        {
+            setAngle(180 - angle);
+            moveBall();
+        }
+        else if (y <= 1)
+        {
+            setAngle(angle * -1);
+            moveBall();
+        }
+        else if (y == 525)
+        {
+            System.out.println("GAME OVER");
+        }
+        return 0;
     }
 }
