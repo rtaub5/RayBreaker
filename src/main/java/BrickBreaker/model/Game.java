@@ -117,9 +117,9 @@ public class Game {
         for (int y = 0; y < cols; y++) {
             for(int x = 0; x < rows; x++) {
                 addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
-                x += rand.nextInt(3);
+                x += rand.nextInt(5);
             }
-            y += rand.nextInt(3);
+            y += rand.nextInt(5);
         }
 
     }
