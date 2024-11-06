@@ -12,12 +12,11 @@ public class Paddle extends Rectangle {
         direction = true;
     }
 
-    public void changeDirection() {
-        direction = !direction;
-    }
-
     public void setDirection(boolean direction) {
         this.direction = direction;
+    }
+    public void changeDirection() {
+        direction = !direction;
     }
 
     public void move() {
