@@ -90,33 +90,30 @@ public class GameController {
 
     public void moveBall(int x, int y) {
         int intersect = game.intersects(x, y);
-        if(intersect > game.getBricks().size() ) {
+        if(intersect > game.getBricks().size() ) { //didn't hit anything
             game.getBall().moveBall();
         }
-        else if(intersect == -1) { //ball hit paddle or wall
+        else if (intersect >= 0 && intersect <= game.getBricks().size()) { //intersected with brick
+            game.removeBrick(intersect);
+            if(game.getBricks().isEmpty()) { //all bricks deleted
+                gameOver();
+            }
+            game.setBallAngle();
+        }
+        else if(intersect == -1) { //ball hit paddle
             game.setBallAngle();
             game.setAngleFromPaddle(x);
             game.getBall().moveBall();
 
         }
-        else if (intersect >= 0 && intersect <= game.getBricks().size()) { //intersected with brick
-            //recalculate angle if it did intersect
-            game.removeBrick(intersect);
-            game.setBallAngle();
-        }
         else if(intersect == -2) { //hit bottom wall
             gameOver();
         }
-        else if(intersect == -3) {
+        else if(intersect == -3) { //hit regular wall
             game.getBall().hitsWall(x,y);
         }
 
         view.repaint();
-    }
-
-    private double calculateAngleWall() {
-        //reset view.ball.angle
-        return 0;
     }
 
     public void gameOver() {
