@@ -17,10 +17,10 @@ public class GameController {
         this.model = model;
         this.view = view;
         game = view.getGame();
+
     }
 
     public void startGame() {
-        //call all starter methods
         //call all starter methods
         //start timer to control view.ball
         if(!isRunning) {
@@ -41,34 +41,22 @@ public class GameController {
     }
 
     public void initializePaddle() {
-        //initialize mouseEvent for view.paddle
-        KeyListener keyListener = new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    game.getPaddle().setDirection(true);
-                }
-                else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    game.getPaddle().setDirection(false);
-                }
-                startPaddleTimer();
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                model.paddleTimer.stop();
-            }
-        };
-
-        view.addKeyListener(keyListener);
         view.setFocusable(true);
         view.requestFocusInWindow();
+    }
+
+    public void movePaddle(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            game.getPaddle().setDirection(true);
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            game.getPaddle().setDirection(false);
+        }
+        startPaddleTimer();
+    }
+
+    public void stopMovingPaddle() {
+        model.paddleTimer.stop();
     }
 
     private void startPaddleTimer() {
@@ -76,7 +64,7 @@ public class GameController {
             model.paddleTimer = new Timer(5, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(game.getPaddle().getX() <= 0 || game.getPaddle().getX() - game.getPaddle().getWidth() >= view.getWidth()) {
+                    if(game.getPaddle().getX() <= 0 || game.getPaddle().getX() + game.getPaddle().getWidth() >= view.getWidth()){
                         game.getPaddle().changeDirection();
                     }
                     game.getPaddle().move();

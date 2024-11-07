@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Paddle extends Rectangle {
 
-
+    //add speed as variable
     private boolean direction;
 
     public Paddle(int x, int y, int width, int height) {
@@ -22,7 +22,7 @@ public class Paddle extends Rectangle {
 
     public void move() {
         if(direction) {
-            x += 1;
+            x += 1; //replace with speed
         }
         else {
             x -= 1;
