@@ -124,7 +124,7 @@ public class Game {
     {
         int position = Math.abs(x - paddle.x);
         int half = paddle.width / position;
-        double angle = 180/position * 10;
+        double angle = 180 / position * 10;
         if (half < 2)
         {
             angle += 89;
@@ -182,7 +182,8 @@ public class Game {
             case PADDLE:
                 ballHitPaddle(x);
                 break;
-
+            default:
+                break;
         }
     }
 }
