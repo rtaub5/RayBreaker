@@ -47,7 +47,7 @@ public class Ball extends Ellipse2D.Double
 
     }
 
-    public int hitsWall(int x, int y)
+    public void reflectOffWall(int x, int y)
     {
         if (x <= 1 || x >= 600)
         {
@@ -59,10 +59,7 @@ public class Ball extends Ellipse2D.Double
             setAngle(angle * -1);
             moveBall();
         }
-        else if (y == 525)
-        {
-            return -1;
-        }
-        return 0;
     }
+
+
 }

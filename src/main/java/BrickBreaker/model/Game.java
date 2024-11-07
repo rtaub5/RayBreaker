@@ -3,14 +3,13 @@ package BrickBreaker.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Game {
     public Ball ball;
     public List<Brick> bricks;
     public Paddle paddle;
-    private int paddleY = 415;
-
+    private boolean inProgress;
+    private int spaceBricks = 5;
     private final Random rand = new Random();
 
 
@@ -18,18 +17,47 @@ public class Game {
         ball = new Ball(0, 0, 0);
         paddle = new Paddle(0, 0, 0, 0);
         bricks = new ArrayList<>();
+        inProgress = true;
+    }
+
+    public boolean isInProgress() {
+        return inProgress;
+    }
+
+    public void restartGame() {
+        inProgress = true;
+    }
+
+    public void setSpaceBricks(int spaceBricks) {
+        this.spaceBricks = spaceBricks;
+    }
+
+    public int getSpaceBricks() {
+        return spaceBricks;
     }
 
     public void setBall(Ball ball) {
         this.ball = ball;
     }
 
+    public Ball getBall() {
+        return ball;
+    }
+
     public void setPaddle(Paddle paddle) {
         this.paddle = paddle;
     }
 
+    public Paddle getPaddle() {
+        return paddle;
+    }
+
     public void setBricks(ArrayList<Brick> bricks) {
         this.bricks = bricks;
+    }
+
+    public List<Brick> getBricks() {
+        return bricks;
     }
 
     public void addBrick(Brick brick) {
@@ -40,74 +68,8 @@ public class Game {
         bricks.remove(ix);
     }
 
-    public List<Brick> getBricks() {
-        return bricks;
-    }
-
-    public Ball getBall() {
-        return ball;
-    }
-
-    public Paddle getPaddle() {
-        return paddle;
-    }
-
-    public void moveBall() {
-        if ((!(ball.getX() == 0)) && (!(ball.getX() == 600)) && (!(ball.getY() == 600))&& (!(ball.getY() == 0)))
-            ball.moveBall();
-        //else if(ball.getY() > paddleY) {
-          //  endGame(); this logic is handled in controller
-        //}
-    }
-
-    public void setBallAngle() {
-        //TODO: replace this with something that makes sense
-        ball.setAngle(ball.getAngle() * -1);
-    }
-
-  /* private void endGame() {
-
-    } */
-
-    //TODO: should this go in ball and pass in list of bricks?
-
-    public int intersects(int x, int y) {
-        int retVal = bricks.size() + 1;
-        if(ball.intersects(paddle)) {
-            retVal = -1;
-        }
-        else if(positionIsWall(x, y) == -1) {
-            retVal = -2;
-        }
-        else if (positionIsWall(x, y) == 1)
-        {
-            // ball.hitsWall(x, y);
-            retVal = -3;
-        }
-        else {
-            for (int i = 0; i < bricks.size(); i++) {
-                if(ball.intersects(bricks.get(i))) {
-                    retVal = i;
-                }
-            }
-        }
-
-        return retVal;
-    }
-
-
-    private int positionIsWall(int x, int y)
-    {
-        int retVal = 0;
-        if (x <= 1 || y <= 1 || x >= 600)
-        {
-            return 1; //hit wall
-        }
-        else if (y >= 525)
-        {
-            retVal = -1;
-        }
-        return retVal;
+    public void clearBricks() {
+        bricks.clear();
     }
 
     public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
@@ -117,16 +79,53 @@ public class Game {
         for (int y = 0; y < cols; y++) {
             for(int x = 0; x < rows; x++) {
                 addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
-                x += rand.nextInt(5);
+                x += rand.nextInt(spaceBricks);
             }
-            y += rand.nextInt(5);
+            y += rand.nextInt(spaceBricks);
+        }
+    }
+
+    public void setBallAngle() {
+        //TODO: replace this with something that makes sense
+        ball.setAngle(ball.getAngle() * -1);
+    }
+
+    public Intersection intersects(int x, int y) {
+        Intersection result = positionIsWall(x, y);
+
+        if(result == Intersection.NONE) {
+            if (ball.intersects(paddle)) {
+                result = Intersection.PADDLE;
+            }
+            else {
+                for (int i = 0; i < bricks.size(); i++) {
+                    if (ball.intersects(bricks.get(i))) {
+                        result = Intersection.BRICK;
+                        removeBrick(i);
+                    }
+                }
+            }
         }
 
+        return result;
+    }
+
+    private Intersection positionIsWall(int x, int y)
+    {
+        if (x <= 1 || y <= 1 || x >= 600)
+        {
+            return Intersection.WALL;
+        }
+        else if (y >= 525)
+        {
+            return Intersection.FLOOR;
+        }
+
+        return Intersection.NONE;
     }
 
     public void setAngleFromPaddle(int x)
     {
-
         int position = Math.abs(x - paddle.x);
         int half = paddle.width / position;
         double angle = 180/position * 10;
@@ -136,13 +135,59 @@ public class Game {
         }
 
         ball.setAngle(angle);
-
-
     }
 
-    public void clearBricks() {
-        bricks.clear();
+    public void ballHitNone() {
+        ball.moveBall();
     }
 
+    public void ballHitWall(int x, int y) {
+        ball.reflectOffWall(x, y);
+    }
+
+    public void ballHitBrick() {
+        if (bricks.isEmpty()) { //all bricks deleted
+            gameOver();
+        }
+        setBallAngle();
+    }
+
+    public void ballHitPaddle(int x) {
+        setBallAngle();
+        setAngleFromPaddle(x);
+        ball.moveBall();
+    }
+
+    public void ballHitFloor() {
+        gameOver();
+    }
+
+    private void gameOver() {
+        clearBricks();
+        inProgress = false;
+    }
+
+    public void nextMove(int x, int y) {
+        Intersection result = intersects(x, y);
+
+        switch(result) {
+            case NONE:
+                ballHitNone();
+                break;
+            case WALL:
+                ballHitWall(x, y);
+                break;
+            case FLOOR:
+                ballHitFloor();
+                break;
+            case BRICK:
+                ballHitBrick();
+                break;
+            case PADDLE:
+                ballHitPaddle(x);
+                break;
+
+        }
+    }
 }
 
