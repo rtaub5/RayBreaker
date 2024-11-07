@@ -1,15 +1,12 @@
-package BrickBreaker.view;
+package brickbreaker.view;
 
-import BrickBreaker.model.Ball;
-import BrickBreaker.model.Brick;
-import BrickBreaker.model.Game;
-import BrickBreaker.model.Paddle;
+import brickbreaker.model.Ball;
+import brickbreaker.model.Brick;
+import brickbreaker.model.Game;
+import brickbreaker.model.Paddle;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package BrickBreaker.model;
+package brickbreaker.model;
 
 import java.awt.geom.Ellipse2D;
 

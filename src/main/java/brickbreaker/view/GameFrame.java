@@ -1,6 +1,6 @@
-package BrickBreaker.view;
+package brickbreaker.view;
 
-import BrickBreaker.controller.GameController;
+import brickbreaker.controller.GameController;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package BrickBreaker.model;
+package brickbreaker.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class Game {
         int cols = height / brickHeight / 2;
 
         for (int y = 0; y < cols; y++) {
-            for(int x = 0; x < rows; x++) {
+            for (int x = 0; x < rows; x++) {
                 addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
                 x += rand.nextInt(spaceBricks);
             }
@@ -93,11 +93,10 @@ public class Game {
     public Intersection intersects(int x, int y) {
         Intersection result = positionIsWall(x, y);
 
-        if(result == Intersection.NONE) {
+        if (result == Intersection.NONE) {
             if (ball.intersects(paddle)) {
                 result = Intersection.PADDLE;
-            }
-            else {
+            } else {
                 for (int i = 0; i < bricks.size(); i++) {
                     if (ball.intersects(bricks.get(i))) {
                         result = Intersection.BRICK;
@@ -112,12 +111,9 @@ public class Game {
 
     private Intersection positionIsWall(int x, int y)
     {
-        if (x <= 1 || y <= 1 || x >= 600)
-        {
+        if (x <= 1 || y <= 1 || x >= 600) {
             return Intersection.WALL;
-        }
-        else if (y >= 525)
-        {
+        } else if (y >= 525) {
             return Intersection.FLOOR;
         }
 
@@ -170,7 +166,7 @@ public class Game {
     public void nextMove(int x, int y) {
         Intersection result = intersects(x, y);
 
-        switch(result) {
+        switch (result) {
             case NONE:
                 ballHitNone();
                 break;

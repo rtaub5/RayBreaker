@@ -1,9 +1,8 @@
-package BrickBreaker.controller;
+package brickbreaker.controller;
 
-import BrickBreaker.model.Game;
-import BrickBreaker.model.Intersection;
-import BrickBreaker.view.GameComponent;
-import BrickBreaker.view.GameFrame;
+import brickbreaker.model.Game;
+import brickbreaker.view.GameComponent;
+import brickbreaker.view.GameFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -29,7 +28,7 @@ public class GameController {
 
     public void startGame() {
         game.restartGame();
-        if(!isRunning) {
+        if (!isRunning) {
             initializeGameState();
             startTimer();
             isRunning = true;
@@ -53,8 +52,7 @@ public class GameController {
     public void movePaddle(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             game.getPaddle().setDirection(true);
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             game.getPaddle().setDirection(false);
         }
         startPaddleTimer();
@@ -65,12 +63,12 @@ public class GameController {
     }
 
     private void startPaddleTimer() {
-        if(model.paddleTimer == null || !model.paddleTimer.isRunning()) {
+        if (model.paddleTimer == null || !model.paddleTimer.isRunning()) {
             model.paddleTimer = new Timer(5, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     double paddleX = game.getPaddle().getX();
-                    if(paddleX <= 0 || paddleX + game.getPaddle().getWidth() >= view.getWidth()){
+                    if (paddleX <= 0 || paddleX + game.getPaddle().getWidth() >= view.getWidth()) {
                         game.getPaddle().changeDirection();
                     }
                     game.getPaddle().move();
@@ -97,7 +95,7 @@ public class GameController {
         view.repaint();
         int restart = JOptionPane.showConfirmDialog(model,
                 "Would you like to play again?", "Game Over", JOptionPane.YES_NO_OPTION);
-        if(restart == JOptionPane.YES_OPTION) {
+        if (restart == JOptionPane.YES_OPTION) {
             startGame();
         }
     }
