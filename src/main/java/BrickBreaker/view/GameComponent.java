@@ -18,11 +18,8 @@ public class GameComponent extends JComponent {
     private final int paddleY = 415;
     private int currX = 200;
     private int currY = 200;
-    private final int brickHeight = 20;
-    private final int brickWidth = 40;
     private Color[] colors;
     Random rand = new Random();
-
 
     /*
     Has:
