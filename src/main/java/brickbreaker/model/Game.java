@@ -142,7 +142,7 @@ public class Game {
     }
 
     public void ballHitBrick() {
-        if (bricks.isEmpty()) { //all bricks deleted
+        if (bricks.isEmpty()) {
             gameOver();
         }
         setBallAngle();
