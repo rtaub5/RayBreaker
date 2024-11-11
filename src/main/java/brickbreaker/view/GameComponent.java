@@ -1,50 +1,37 @@
-package BrickBreaker.view;
+package brickbreaker.view;
 
-import BrickBreaker.model.Ball;
-import BrickBreaker.model.Brick;
-import BrickBreaker.model.Game;
-import BrickBreaker.model.Paddle;
+import brickbreaker.model.Ball;
+import brickbreaker.model.Brick;
+import brickbreaker.model.Game;
+import brickbreaker.model.Paddle;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameComponent extends JComponent {
     private Game game;
-    private final int paddleY = 415;
-    private int currX = 200;
-    private int currY = 200;
-    private Color[] colors;
+    private final Color[] colors;
     Random rand = new Random();
 
-    /*
-    Has:
-        - paddle: brick that moves with cursor along horizontal line only
-            make this a separate class or just use brick?
-        - ball
-        - array of bricks (however many fit on specified portion of screen)
-
-     */
     public GameComponent() {
         setBackground(Color.BLACK);
         this.setOpaque(true);
+        setBorder(new LineBorder(Color.DARK_GRAY, 1));
 
-        setBorder(new LineBorder(Color.DARK_GRAY, 1)); //
-
-        game = new Game();
-        game.ball = new Ball(currX, currY, 15);
-        game.bricks = new ArrayList<Brick>();
-        game.paddle = new Paddle(250, paddleY, 120, 10);
+        initializeGame();
 
         colors = new Color[]{Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.GREEN, Color.RED, Color.WHITE};
 
     }
 
-    //TODO: move all this to be default game initialization in constructor?
+    private void initializeGame() {
+        game = new Game();
+        game.ball = new Ball(200, 200, 15);
+        game.bricks = new ArrayList<Brick>();
+        game.paddle = new Paddle(250, 415, 120, 10);
+    }
 
     public Game getGame() {
         return game;

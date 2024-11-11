@@ -1,7 +1,7 @@
-package BrickBreaker;
+package brickbreaker;
 
 
-import BrickBreaker.view.GameFrame;
+import brickbreaker.view.GameFrame;
 
 public class Main {
     public static void main(String[] args) {

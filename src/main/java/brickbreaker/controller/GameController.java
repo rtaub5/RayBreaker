@@ -1,8 +1,8 @@
-package BrickBreaker.controller;
+package brickbreaker.controller;
 
-import BrickBreaker.model.Game;
-import BrickBreaker.view.GameComponent;
-import BrickBreaker.view.GameFrame;
+import brickbreaker.model.Game;
+import brickbreaker.view.GameComponent;
+import brickbreaker.view.GameFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -17,27 +17,31 @@ public class GameController {
         this.model = model;
         this.view = view;
         game = view.getGame();
+    }
 
+    private void initializeGameState() {
+        view.getGame().getBall().setX(200);
+        view.getGame().getBall().setY(200);
+        initializePaddle();
+        game.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
     }
 
     public void startGame() {
-        //call all starter methods
-        //start timer to control view.ball
-        if(!isRunning) {
-            view.getGame().getBall().setX(200);
-            view.getGame().getBall().setY(200);
-            initializePaddle();
-            game.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
+        game.restartGame();
+        if (!isRunning) {
+            initializeGameState();
             startTimer();
+            isRunning = true;
         }
         else {
-            //TODO: shouldn't have to reinitialize but do
-            initializePaddle();
-            startTimer();
+            resumeGame();
         }
 
-        isRunning = true;
+    }
 
+    private void resumeGame() {
+        initializePaddle();
+        startTimer();
     }
 
     public void initializePaddle() {
@@ -48,8 +52,7 @@ public class GameController {
     public void movePaddle(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             game.getPaddle().setDirection(true);
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             game.getPaddle().setDirection(false);
         }
         startPaddleTimer();
@@ -60,11 +63,12 @@ public class GameController {
     }
 
     private void startPaddleTimer() {
-        if(model.paddleTimer == null || !model.paddleTimer.isRunning()) {
+        if (model.paddleTimer == null || !model.paddleTimer.isRunning()) {
             model.paddleTimer = new Timer(5, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(game.getPaddle().getX() <= 0 || game.getPaddle().getX() + game.getPaddle().getWidth() >= view.getWidth()){
+                    double paddleX = game.getPaddle().getX();
+                    if (paddleX <= 0 || paddleX + game.getPaddle().getWidth() >= view.getWidth()) {
                         game.getPaddle().changeDirection();
                     }
                     game.getPaddle().move();
@@ -77,30 +81,10 @@ public class GameController {
 
 
     public void moveBall(int x, int y) {
-        int intersect = game.intersects(x, y);
-        if(intersect > game.getBricks().size() ) { //didn't hit anything
-            game.getBall().moveBall();
-        }
-        else if (intersect >= 0 && intersect <= game.getBricks().size()) { //intersected with brick
-            game.removeBrick(intersect);
-            if(game.getBricks().isEmpty()) { //all bricks deleted
-                gameOver();
-            }
-            game.setBallAngle();
-        }
-        else if(intersect == -1) { //ball hit paddle
-            game.setBallAngle();
-            game.setAngleFromPaddle(x);
-            game.getBall().moveBall();
-
-        }
-        else if(intersect == -2) { //hit bottom wall
+        game.nextMove(x, y);
+        if (!game.isInProgress()) {
             gameOver();
         }
-        else if(intersect == -3) { //hit regular wall
-            game.getBall().hitsWall(x,y);
-        }
-
         view.repaint();
     }
 
@@ -108,11 +92,10 @@ public class GameController {
         //stop timers, display popup
         isRunning = false;
         stopTimer();
-        game.clearBricks();
         view.repaint();
         int restart = JOptionPane.showConfirmDialog(model,
                 "Would you like to play again?", "Game Over", JOptionPane.YES_NO_OPTION);
-        if(restart == JOptionPane.YES_OPTION) {
+        if (restart == JOptionPane.YES_OPTION) {
             startGame();
         }
     }
