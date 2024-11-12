@@ -12,7 +12,6 @@ public class Game {
     private int spaceBricks = 5;
     private final Random rand = new Random();
 
-
     public Game() {
         ball = new Ball(0, 0, 0);
         paddle = new Paddle(0, 0, 0, 0);
@@ -122,12 +121,20 @@ public class Game {
 
     public void setAngleFromPaddle(int x)
     {
-        int position = Math.abs(x - paddle.x);
-        int half = paddle.width / position;
-        double angle = 180 / position * 10;
-        if (half < 2)
+        int position = Math.abs(x - paddle.x) + 1;
+        double quarter = paddle.getQuarter();
+        double angle = position;
+        if (position < quarter)
         {
-            angle += 89;
+            angle += 10;
+        }
+        else if (position > quarter && position < (quarter*3))
+        {
+            angle += 30;
+        }
+        else
+        {
+            angle += 60;
         }
 
         ball.setAngle(angle);

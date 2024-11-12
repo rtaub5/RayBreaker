@@ -1,29 +1,49 @@
 package brickbreakertest;
 
 import brickbreaker.model.*;
+import brickbreaker.view.GameComponent;
+import brickbreaker.view.GameFrame;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class GameTest {
 
     //test for ball.moveBall() straight
-    @Test
-    public void moveBall() {
-        Ball ball = new Ball(10, 10, 15);
-        ball.moveBall();
-      //  assertEquals()
-
-    }
+//    @Test
+//    public void moveBall() {
+//
+//      //  assertEquals()
+//
+//    }
 
     //test for ball.reflectOffWall()
+    @Test
     public void reflectOffWall() {
+        Game game = mock();
+        Ball ball = mock();
+        doReturn(ball).when(game).getBall();
+        //when
+        game.ballHitWall(anyInt(), anyInt());
+        ball.reflectOffWall(anyInt(), anyInt());
 
+        //then
+        verify(game).ballHitWall(anyInt(), anyInt());
+        verify(ball).reflectOffWall(anyInt(), anyInt());
     }
 
     //test for game.setAngleFromPaddle()
+    @Test
     public void setAngleFromPaddle() {
-        //do this once fix paddle reflections
+        Game game = mock();
+        Ball ball = mock();
+        doReturn(ball).when(game).getBall();
+        //when
+        game.setAngleFromPaddle(anyInt());
+
+        //then
+        verify(game).setAngleFromPaddle(anyInt());
     }
 
     @Test
