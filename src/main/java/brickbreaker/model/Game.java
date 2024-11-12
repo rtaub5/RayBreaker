@@ -124,16 +124,11 @@ public class Game {
         int position = Math.abs(x - paddle.x) + 1;
         double quarter = paddle.getQuarter();
         double angle = position;
-        if (position < quarter)
-        {
+        if (position < quarter) {
             angle += 10;
-        }
-        else if (position > quarter && position < (quarter*3))
-        {
+        } else if (position > quarter && position < (quarter * 3)) {
             angle += 30;
-        }
-        else
-        {
+        } else {
             angle += 60;
         }
 
