@@ -1,6 +1,7 @@
 package brickbreakertest;
 
 import brickbreaker.controller.GameController;
+import brickbreaker.model.Ball;
 import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
 import brickbreaker.view.GameComponent;
@@ -37,5 +38,21 @@ public class ControllerTest {
         verify(paddle).setDirection(false);
 
     }
+
+    @Test
+    public void moveBall()
+    {
+        GameComponent view = mock();
+        GameFrame model = mock();
+        Game game = mock();
+        Ball ball = mock();
+        doReturn(ball).when(game).getBall();
+
+        GameController gameController = mock();
+        doNothing().when(gameController).moveBall(anyInt(), anyInt());
+        // when
+        gameController.moveBall(anyInt(), anyInt());
+    }
+
 
 }
