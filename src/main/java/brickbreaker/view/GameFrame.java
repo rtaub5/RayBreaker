@@ -1,17 +1,24 @@
-package BrickBreaker;
+package brickbreaker.view;
+
+import brickbreaker.controller.GameController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class GameFrame extends JFrame {
-    private Timer timer;
+    public Timer timer;
+    public Timer paddleTimer;
     private GameComponent component;
+    private GameController controller;
 
     // Constructor
     public GameFrame() {
         component = new GameComponent();
+        controller = new GameController(this, component);
         setFrame();
         setVisible(true);
     }
@@ -38,15 +45,6 @@ public class GameFrame extends JFrame {
         pane.add(title, BorderLayout.PAGE_START);
         pane.add(component, BorderLayout.CENTER);
 
-        timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // This method will be called every second
-                component.moveBall();
-                component.repaint();
-            }
-        });
-
         // Panels to hold buttons
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -72,17 +70,37 @@ public class GameFrame extends JFrame {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //controller.startTimer(timer);
+                controller.startGame();
             }
         });
 
         pause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //controller.stopTimer(timer);
+                controller.stopTimer();
             }
         });
-    }
 
+        KeyListener keyListener = new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                controller.movePaddle(e.getKeyCode());
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                controller.stopMovingPaddle();
+            }
+        };
+
+        component.addKeyListener(keyListener);
+    }
 
 }
