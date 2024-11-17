@@ -91,7 +91,6 @@ public class GameFrame extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 controller.movePaddle(e.getKeyCode());
-
             }
 
             @Override

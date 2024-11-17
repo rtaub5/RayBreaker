@@ -12,12 +12,20 @@ public class Game {
     private int spaceBricks = 5;
     private final Random rand = new Random();
 
+    private int score;
+
 
     public Game() {
         ball = new Ball(0, 0, 0);
         paddle = new Paddle(0, 0, 0, 0);
         bricks = new ArrayList<>();
         inProgress = true;
+        score = 0;
+    }
+
+    public int getScore() {
+        return score;
+
     }
 
     public boolean isInProgress() {
@@ -50,6 +58,13 @@ public class Game {
 
     public Paddle getPaddle() {
         return paddle;
+    }
+
+
+    public double getBallToPaddleAngle() {
+        double deltaX = paddle.getX() - ball.getX();
+        double deltaY = paddle.getY() - ball.getY();
+        return Math.atan2(deltaY, deltaX);
     }
 
     public void setBricks(ArrayList<Brick> bricks) {
@@ -129,7 +144,16 @@ public class Game {
         {
             angle += 89;
         }
-
+     //   int position = Math.abs(x - paddle.x) + 1;
+        double quarter = paddle.getQuarter();
+        angle = position;
+        if (position < quarter) {
+            angle += 10;
+        } else if (position > quarter && position < (quarter * 3)) {
+            angle += 30;
+        } else {
+            angle += 60;
+        }
         ball.setAngle(angle);
     }
 
@@ -146,6 +170,7 @@ public class Game {
             gameOver();
         }
         setBallAngle();
+        score++;
     }
 
     public void ballHitPaddle(int x) {
@@ -161,6 +186,8 @@ public class Game {
     private void gameOver() {
         clearBricks();
         inProgress = false;
+        score = 0;
+
     }
 
     public void nextMove(int x, int y) {

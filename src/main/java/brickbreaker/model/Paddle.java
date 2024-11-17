@@ -29,9 +29,9 @@ public class Paddle extends Rectangle {
         }
     }
 
-
-
-
-
+    public double getQuarter()
+    {
+        return (double) this.width / 4;
+    }
 
 }
