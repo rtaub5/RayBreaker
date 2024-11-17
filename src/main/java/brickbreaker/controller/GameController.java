@@ -19,6 +19,10 @@ public class GameController {
         game = view.getGame();
     }
 
+    public Game getGame() {
+        return game;
+    }
+
     private void initializeGameState() {
         view.getGame().getBall().setX(200);
         view.getGame().getBall().setY(200);
@@ -47,6 +51,16 @@ public class GameController {
     public void initializePaddle() {
         view.setFocusable(true);
         view.requestFocusInWindow();
+    }
+
+    public void movePaddleRight() {
+        movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
+                System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R'));
+    }
+
+    public void movePaddleLeft() {
+        movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
+                System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
     }
 
     public void movePaddle(KeyEvent e) {
