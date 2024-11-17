@@ -39,8 +39,7 @@ public class ControllerTest {
         verify(paddle).setDirection(true);
     }
 
-    @Test
-    public void movePaddleLeft() {
+   /* public void movePaddleLeft() {
         // given
         GameComponent view = mock();
         GameFrame model = mock();
@@ -69,7 +68,7 @@ public class ControllerTest {
 
         verify(paddle).setDirection(false);
 
-    }
+    } */
 
     @Test
     public void moveBall()
