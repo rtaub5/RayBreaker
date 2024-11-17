@@ -62,15 +62,15 @@ public class GameController
         view.requestFocusInWindow();
     }
 
-    public void movePaddleRight () {
-    movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
-            System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R'));
-    }
-
-    public void movePaddleLeft () {
-    movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
-            System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
-    }
+//    public void movePaddleRight () {
+//    movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
+//            System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R'));
+//    }
+//
+//    public void movePaddleLeft () {
+//    movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
+//            System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
+//    }
 
     public void movePaddle(int keyCode) { // send
         if (keyCode == KeyEvent.VK_RIGHT) {
@@ -81,17 +81,17 @@ public class GameController
         startPaddleTimer();
     }
 
-    public void movePaddle (KeyEvent e){
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-        {
-            game.getPaddle().setDirection(true);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-        {
-
-            game.getPaddle().setDirection(false);
-        }
-    startPaddleTimer();
-    }
+//    public void movePaddle (KeyEvent e){
+//        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+//        {
+//            game.getPaddle().setDirection(true);
+//        } else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+//        {
+//
+//            game.getPaddle().setDirection(false);
+//        }
+//    startPaddleTimer();
+//    }
 
     public void stopMovingPaddle () {
     model.paddleTimer.stop();

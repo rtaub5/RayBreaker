@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/libs/basic_neural_network-v0.5.1-jar-with-dependencies.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/AI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/brickbreakertest/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/brickbreakertest/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/brickbreakertest/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/brickbreakertest/GameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +64,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging adinaNew",
+    "git-widget-placeholder": "adinaNew",
     "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -86,7 +78,20 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.ControllerTest">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="brickbreaker.Main" />
+      <module name="BrickBreaker.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="brickbreaker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -135,6 +140,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="ControllerTest.movePaddleLeft" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;brickbreakertest.ControllerTest.movePaddleLeft&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="RAYBreaker" />
       <method v="2">
@@ -150,6 +179,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.ControllerTest.movePaddleLeft" />
         <item itemvalue="Gradle.ControllerTest" />
         <item itemvalue="Gradle.ControllerTest.movePaddle" />
       </list>

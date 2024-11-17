@@ -60,12 +60,12 @@ public class ControllerTest {
 
 
         KeyEvent rightKeyEvent = new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R');
-        gameController.movePaddle(rightKeyEvent);
+      //  gameController.movePaddle(rightKeyEvent);
 
         verify(paddle).setDirection(true);
 
         KeyEvent leftKeyEvent = new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L');
-        gameController.movePaddle(leftKeyEvent);
+    //    gameController.movePaddle(leftKeyEvent);
 
         verify(paddle).setDirection(false);
 

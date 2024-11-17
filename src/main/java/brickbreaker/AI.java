@@ -4,8 +4,12 @@ import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.controller.GameController;
 import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
+import java.awt.event.KeyEvent;
 
 import java.util.*;
+
+import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_RIGHT;
 
 public class AI {
     private final GameFrame frame = new GameFrame();
@@ -37,9 +41,11 @@ public class AI {
             double[] answer = neuralNetwork.guess(input);
 
             if(answer[0] > answer[1]) {
-                controller.movePaddleLeft();
+              //  controller.movePaddleLeft();
+                controller.movePaddle(VK_LEFT);
             } else {
-                controller.movePaddleRight();
+               // controller.movePaddleRight();
+                controller.movePaddle(VK_RIGHT);
             }
         }
 
