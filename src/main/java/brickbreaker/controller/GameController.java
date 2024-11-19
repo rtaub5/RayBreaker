@@ -62,16 +62,6 @@ public class GameController
         view.requestFocusInWindow();
     }
 
-//    public void movePaddleRight () {
-//    movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
-//            System.currentTimeMillis(), 0, KeyEvent.VK_RIGHT, 'R'));
-//    }
-//
-//    public void movePaddleLeft () {
-//    movePaddle(new KeyEvent(new JButton(), KeyEvent.KEY_PRESSED,
-//            System.currentTimeMillis(), 0, KeyEvent.VK_LEFT, 'L'));
-//    }
-
     public void movePaddle(int keyCode) { // send
         if (keyCode == KeyEvent.VK_RIGHT) {
             game.getPaddle().setDirection(true);
@@ -81,23 +71,11 @@ public class GameController
         startPaddleTimer();
     }
 
-//    public void movePaddle (KeyEvent e){
-//        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-//        {
-//            game.getPaddle().setDirection(true);
-//        } else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-//        {
-//
-//            game.getPaddle().setDirection(false);
-//        }
-//    startPaddleTimer();
-//    }
-
     public void stopMovingPaddle () {
     model.paddleTimer.stop();
     }
 
-        private void startPaddleTimer () {
+    private void startPaddleTimer() {
         if (model.paddleTimer == null || !model.paddleTimer.isRunning())
         {
             model.paddleTimer = new Timer(5, new ActionListener()
@@ -119,7 +97,7 @@ public class GameController
     }
 
 
-    public void moveBall ( int x, int y){
+    public void moveBall(int x, int y) {
     game.nextMove(x, y);
     if (!game.isInProgress())
     {
@@ -128,7 +106,7 @@ public class GameController
     view.repaint();
     }
 
-    public void gameOver () {
+    public void gameOver() {
     //stop timers, display popup
     isRunning = false;
     stopTimer();
@@ -141,7 +119,7 @@ public class GameController
     }
     }
 
-    public void startTimer () {
+    public void startTimer() {
     model.timer = new Timer(100, new ActionListener()
     {
 
@@ -155,34 +133,10 @@ public class GameController
     model.timer.start();
     }
 
-    public void stopTimer () {
-        if (model.timer != null && model.timer.isRunning())
-        {
+    public void stopTimer() {
+        if (model.timer != null && model.timer.isRunning()) {
             model.timer.stop();
         }
     }
-        /*
-        Game logic:
-            - Ball begins somewhere pointed in some direction and keeps moving
-            - when ball hits either: a wall (edge of screen), a brick, or the paddle, it changes its angle
-            - if the ball hits a brick, the brick vanishes
-            - if the ball hits the bottom wall, game is over
 
-        Process (not necessarily in order):
-            - void startGame(): perhaps a button in GameFrame that starts the ball moving (starts timer)
-            - mouseEvent to drag paddle along the bottom of the screen
-            - void moveBall(int x, int y): moves the ball along the screen one pixel (or more) in the ball's current
-              angle
-            - timer event calls moveBall() and checks after or before each move whether it has/will bump into something
-            - this can use Ellipse2D.intersects(x, y, width, height)
-                 - If true: checkObject(): switch case if object is wall, brick, or paddle
-            - intersects probably won't check for walls though, so perhaps first check that the ball is still in bounds.
-                 - If it's below bounds, game over;
-                 otherwise, calculateAngle() and call moveBall()
-            - double calculateAngle(double angle): decides which angle to reflect based on the angle the ball is
-              as it hits. reset ball.angle.
-                 - perhaps based on the surface type it hits
-                   (ie if it hits a brick, reflect by 180; if a wall, by 90 etc)
-        */
-
-    }
+}
