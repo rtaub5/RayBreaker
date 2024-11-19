@@ -4,8 +4,12 @@ import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.controller.GameController;
 import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
+import java.awt.event.KeyEvent;
 
 import java.util.*;
+
+import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_RIGHT;
 
 public class AI {
     private final GameFrame frame = new GameFrame();
@@ -21,14 +25,14 @@ public class AI {
         ArrayList<NeuralNetwork> neuralNetworks = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            neuralNetworks.add(new NeuralNetwork(2, 2, 1));
+            neuralNetworks.add(new NeuralNetwork(2, 10, 1));
         }
 
         return neuralNetworks;
     }
 
 
-    public int play(NeuralNetwork neuralNetwork) {
+    private int play(NeuralNetwork neuralNetwork) {
         controller.startGame();
 
         while(controller.getGame().isInProgress()) {
@@ -37,16 +41,16 @@ public class AI {
             double[] answer = neuralNetwork.guess(input);
 
             if(answer[0] > answer[1]) {
-                controller.movePaddleLeft();
+                controller.movePaddle(VK_LEFT);
             } else {
-                controller.movePaddleRight();
+                controller.movePaddle(VK_RIGHT);
             }
         }
 
         return controller.getGame().getScore();
     }
 
-    public ArrayList<NeuralNetwork> getBestPerforming(TreeMap<Integer, NeuralNetwork> neuralNetworks) {
+    private ArrayList<NeuralNetwork> getBestPerforming(TreeMap<Integer, NeuralNetwork> neuralNetworks) {
         List<Map.Entry<Integer, NeuralNetwork>> entries = new ArrayList<>(neuralNetworks.entrySet());
         ArrayList<NeuralNetwork> newList = new ArrayList<>();
 
@@ -57,8 +61,9 @@ public class AI {
         return newList;
     }
 
-    public void merge(List<NeuralNetwork> neuralNetworks) {
+    private ArrayList<NeuralNetwork> merge(List<NeuralNetwork> neuralNetworks) {
         ArrayList<NeuralNetwork> newNeuralNetworks = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             NeuralNetwork parent1 = neuralNetworks.get(i % count);
             NeuralNetwork parent2 = neuralNetworks.get((i + 1) % count);
@@ -67,6 +72,20 @@ public class AI {
             merged.mutate(0.1);
             newNeuralNetworks.add(merged);
         }
+
+        return newNeuralNetworks;
+    }
+
+    public ArrayList<NeuralNetwork> learnGame(ArrayList<NeuralNetwork> neuralNetworks) {
+        TreeMap<Integer, NeuralNetwork> scores = new TreeMap<>(Comparator.reverseOrder());
+
+        for (int i = 0; i < neuralNetworks.size(); i++) {
+            scores.put(play(neuralNetworks.get(i)), neuralNetworks.get(i));
+        }
+
+        ArrayList<NeuralNetwork> newNeuralNetworks = getBestPerforming(scores);
+        merge(newNeuralNetworks);
+        return newNeuralNetworks;
     }
 
 

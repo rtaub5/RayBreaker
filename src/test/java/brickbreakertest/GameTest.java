@@ -1,22 +1,22 @@
 package brickbreakertest;
-
 import brickbreaker.model.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
+
 
 public class GameTest {
 
     //test for ball.moveBall() straight
-    //    @Test
-    //    public void moveBall() {
-    //
-    //      //  assertEquals()
-    //
-    //    }
+    @Test
+    public void moveBall() {
+        Ball ball = new Ball(10, 10, 15);
+        ball.moveBall();
+      //  assertEquals()
+
+    }
 
     //test for ball.reflectOffWall()
     @Test

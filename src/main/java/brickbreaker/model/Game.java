@@ -11,7 +11,9 @@ public class Game {
     private boolean inProgress;
     private int spaceBricks = 5;
     private final Random rand = new Random();
+
     private int score;
+
 
     public Game() {
         ball = new Ball(0, 0, 0);
@@ -23,6 +25,7 @@ public class Game {
 
     public int getScore() {
         return score;
+
     }
 
     public boolean isInProgress() {
@@ -56,6 +59,7 @@ public class Game {
     public Paddle getPaddle() {
         return paddle;
     }
+
 
     public double getBallToPaddleAngle() {
         double deltaX = paddle.getX() - ball.getX();
@@ -133,9 +137,16 @@ public class Game {
 
     public void setAngleFromPaddle(int x)
     {
-        int position = Math.abs(x - paddle.x) + 1;
+        int position = Math.abs(x - paddle.x);
+        int half = paddle.width / position;
+        double angle = 180 / position * 10;
+        if (half < 2)
+        {
+            angle += 89;
+        }
+     //   int position = Math.abs(x - paddle.x) + 1;
         double quarter = paddle.getQuarter();
-        double angle = position;
+        angle = position;
         if (position < quarter) {
             angle += 10;
         } else if (position > quarter && position < (quarter * 3)) {
@@ -143,7 +154,6 @@ public class Game {
         } else {
             angle += 60;
         }
-
         ball.setAngle(angle);
     }
 
@@ -177,6 +187,7 @@ public class Game {
         clearBricks();
         inProgress = false;
         score = 0;
+
     }
 
     public void nextMove(int x, int y) {

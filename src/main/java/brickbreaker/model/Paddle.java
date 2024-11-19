@@ -34,9 +34,4 @@ public class Paddle extends Rectangle {
         return (double) this.width / 4;
     }
 
-
-
-
-
-
 }
