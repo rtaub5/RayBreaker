@@ -1,6 +1,6 @@
 package brickbreakertest;
 
-import brickbreaker.controller.GameController;
+import brickbreaker.GameController;
 import brickbreaker.model.Ball;
 import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
@@ -8,7 +8,6 @@ import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 import static org.mockito.Mockito.*;

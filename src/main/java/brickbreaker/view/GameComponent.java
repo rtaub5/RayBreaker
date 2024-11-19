@@ -12,21 +12,17 @@ import java.util.Random;
 
 public class GameComponent extends JComponent {
     private Game game;
-    private final Color[] colors;
+    private final Color[] colors = new Color[]{Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.GREEN, Color.RED, Color.WHITE};
     Random rand = new Random();
 
     public GameComponent() {
         setBackground(Color.BLACK);
         this.setOpaque(true);
         setBorder(new LineBorder(Color.DARK_GRAY, 1));
-
         initializeGame();
-
-        colors = new Color[]{Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.GREEN, Color.RED, Color.WHITE};
-
     }
 
-    private void initializeGame() {
+    public void initializeGame() {
         game = new Game();
         game.ball = new Ball(200, 200, 15);
         game.bricks = new ArrayList<Brick>();

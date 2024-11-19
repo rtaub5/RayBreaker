@@ -1,6 +1,7 @@
 package brickbreaker.view;
 
-import brickbreaker.controller.GameController;
+import brickbreaker.GameController;
+import brickbreaker.model.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,15 +11,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameFrame extends JFrame {
-    public Timer timer;
-    public Timer paddleTimer;
+    private Game game;
     private GameComponent component;
     private GameController controller;
 
     // Constructor
     public GameFrame() {
         component = new GameComponent();
-        controller = new GameController(this, component);
+        game = component.getGame();
+        controller = new GameController(game, component);
         setFrame();
         setVisible(true);
     }

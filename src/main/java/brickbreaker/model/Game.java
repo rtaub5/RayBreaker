@@ -14,7 +14,6 @@ public class Game {
 
     private int score;
 
-
     public Game() {
         ball = new Ball(0, 0, 0);
         paddle = new Paddle(0, 0, 0, 0);
