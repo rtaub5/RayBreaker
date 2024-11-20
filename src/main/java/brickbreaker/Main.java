@@ -27,6 +27,7 @@ public class Main {
 
     }
 
+
     private static void adinaMainChanges()
     {
         AI ai = new AI(1000);
@@ -45,4 +46,5 @@ public class Main {
 
         //repeat process
     }
+
 }
