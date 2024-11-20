@@ -11,12 +11,12 @@ import static java.awt.event.KeyEvent.VK_LEFT;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 
 public class AI {
-    // private final GameFrame frame = new GameFrame();
     private final GameComponent component = new GameComponent();
     private final Game game = new Game();
     private final GameController controller = new GameController(game, component);
+    private ArrayList<Integer[]> scoresPerGen = new ArrayList<>();
 
-    private Random random;
+    private Random random = new Random();
     int count;
 
     public AI(int count) {
@@ -27,49 +27,46 @@ public class AI {
         ArrayList<NeuralNetwork> neuralNetworks = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            neuralNetworks.add(new NeuralNetwork(2, 10, 1));
+            neuralNetworks.add(new NeuralNetwork(1, 10, 2));
         }
 
         return neuralNetworks;
     }
 
+    public ArrayList<Integer[]> getScoresPerGen() {
+        return scoresPerGen;
+    }
 
     private int play(NeuralNetwork neuralNetwork) {
         controller.startGame();
 
-        while(controller.getGame().isInProgress()) {
+        while(game.isInProgress()) {
+           // System.out.println("Move paddle " + game.getPaddle().getX() + ", " + game.getPaddle().getY());
+           // System.out.println("move"); uncommenting either statement leads to statement printing
+           //infinitely? no other debug statements print.
             double[] input = new double[1];
             input[0] = controller.getGame().getBallToPaddleAngle();
             double[] answer = neuralNetwork.guess(input);
 
             if(answer[0] > answer[1]) {
+               // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
                 controller.movePaddle(VK_LEFT);
             } else {
+                //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
                 controller.movePaddle(VK_RIGHT);
             }
         }
 
+        System.out.println(controller.getGame().getScore());
         return controller.getGame().getScore();
     }
-    // Treemap has to become a list that can be sorted. We DO want duplicates, even if two neural networks get the same score
-    // integer of treemap is score, we need to make a datastructure that combines scores and neural network
-  /*  private ArrayList<NeuralNetwork> getBestPerforming(TreeMap<Integer, NeuralNetwork> neuralNetworks) {
 
-       List<Map.Entry<Integer, NeuralNetwork>> entries = new ArrayList<>(neuralNetworks.entrySet());
-        ArrayList<NeuralNetwork> newList = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            newList.add(entries.get(i).getValue());
-        }
-
-        return newList;
-    } */
     private ArrayList<NeuralNetwork> getBestPerforming(List<Integer> scores, List<List<NeuralNetwork>>groupedNN)
     {
-        List<Integer> sortedScores = new ArrayList<>(scores);
-        ArrayList<NeuralNetwork> newNeuralNetworks = new ArrayList<>();
-        Collections.sort(sortedScores);
-        for (int ix = 0; ix < 10; ++ix)
+        List<Integer> sortedScores = new ArrayList<>(scores); //all scores
+        ArrayList<NeuralNetwork> newNeuralNetworks = new ArrayList<>(); //best performing networks
+        Collections.sort(sortedScores, Collections.reverseOrder());
+        for (int ix = 0; ix < sortedScores.size(); ++ix)
         {
             int currHighestScore = sortedScores.get(ix);
             int indexHighestScore = scores.get(currHighestScore);
@@ -78,7 +75,6 @@ public class AI {
         return newNeuralNetworks;
     }
 
-    // make yael's changes from screenshot
     private ArrayList<NeuralNetwork> merge(List<NeuralNetwork> neuralNetworks) {
         ArrayList<NeuralNetwork> newNeuralNetworks = new ArrayList<>();
 
@@ -95,17 +91,14 @@ public class AI {
     }
 
     public ArrayList<NeuralNetwork> learnGame(ArrayList<NeuralNetwork> neuralNetworks) {
-     //   TreeMap<Integer, NeuralNetwork> scores = new TreeMap<>(Comparator.reverseOrder());
         List<Integer> scores = new ArrayList<>();
         List<List<NeuralNetwork>> groupedNN = new ArrayList<>();
 
         for (int i = 0; i < neuralNetworks.size(); i++) {
-            //   scores.put(play(neuralNetworks.get(i)), neuralNetworks.get(i));
-            //  scores.get(i).set(0, play(neuralNetworks.get(i)));
-            //  scores.get(i).set(1, neuralNetworks.get(i));
+            System.out.println("new play");
             int currScore = play(neuralNetworks.get(i));
-            int currIndex = scores.get(currScore);
-            if (currIndex == -1)
+
+            if (scores.size() <= currScore)
             {
                 scores.add(currScore);
                 List<NeuralNetwork> network = new ArrayList<>();
@@ -114,17 +107,28 @@ public class AI {
             }
             else
             {
+                int currIndex = scores.get(currScore);
                 List<NeuralNetwork> networks = groupedNN.get(currIndex);
                 networks.add(neuralNetworks.get(i));
                 groupedNN.set(currIndex, networks);
             }
         }
 
-       // ArrayList<NeuralNetwork> newNeuralNetworks = getBestPerforming(scores);
+        scoresPerGen.add(scores.toArray(new Integer[scores.size()]));
         ArrayList<NeuralNetwork> newNeuralNetworks = getBestPerforming(scores, groupedNN);
         merge(newNeuralNetworks);
         return newNeuralNetworks;
 
+    }
+
+    public double getAvgScorePerGen(int gen) {
+        double sum = 0;
+
+        for (int i = 0; i < scoresPerGen.get(gen).length; i++) {
+            sum += scoresPerGen.get(gen)[i];
+        }
+
+        return sum / scoresPerGen.get(gen).length;
     }
 
 }

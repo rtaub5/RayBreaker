@@ -23,15 +23,16 @@ public class GameController {
         return model;
     }
 
-
     private void initializeGameState() {
-        view.getGame().getBall().setX(200);
-        view.getGame().getBall().setY(200);
+        System.out.println("INITIALIZING GAME STATE");
+        model.getBall().setX(200);
+        model.getBall().setY(200);
         initializePaddle();
         model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
     }
 
     public void startGame() {
+        System.out.println("STARTING GAME");
         model.restartGame();
         if (!isRunning) {
             initializeGameState();
@@ -53,7 +54,7 @@ public class GameController {
         view.requestFocusInWindow();
     }
 
-    public void movePaddle(int keyCode) { // send
+    public void movePaddle(int keyCode) {
         if (keyCode == KeyEvent.VK_RIGHT) {
             model.getPaddle().setDirection(true);
         } else if (keyCode == KeyEvent.VK_LEFT) {
@@ -85,6 +86,7 @@ public class GameController {
 
 
     public void moveBall(int x, int y) {
+        System.out.println("MOVE BALL: " + x + ", " + y);
         model.nextMove(x, y);
         if (!model.isInProgress()) {
             gameOver();
@@ -105,7 +107,7 @@ public class GameController {
     }
 
     public void startTimer() {
-        timer = new Timer(100, new ActionListener() {
+        /*timer = new Timer(100, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,6 +116,20 @@ public class GameController {
         });
 
         timer.start();
+        System.out.println("TIMER STARTED"); */
+        System.out.println("Attempting to start ball timer...");
+        if (timer == null || !timer.isRunning()) {
+            timer = new Timer(100, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    moveBall((int) model.getBall().getX(), (int) model.getBall().getY());
+                }
+            });
+            timer.start();
+            System.out.println("Ball timer started.");
+        } else {
+            System.out.println("Ball timer already running.");
+        }
     }
 
     public void stopTimer() {
@@ -121,28 +137,5 @@ public class GameController {
             timer.stop();
         }
     }
-        /*
-        Game logic:
-            - Ball begins somewhere pointed in some direction and keeps moving
-            - when ball hits either: a wall (edge of screen), a brick, or the paddle, it changes its angle
-            - if the ball hits a brick, the brick vanishes
-            - if the ball hits the bottom wall, game is over
-
-        Process (not necessarily in order):
-            - void startGame(): perhaps a button in GameFrame that starts the ball moving (starts timer)
-            - mouseEvent to drag paddle along the bottom of the screen
-            - void moveBall(int x, int y): moves the ball along the screen one pixel (or more) in the ball's current
-              angle
-            - timer event calls moveBall() and checks after or before each move whether it has/will bump into something
-            - this can use Ellipse2D.intersects(x, y, width, height)
-                 - If true: checkObject(): switch case if object is wall, brick, or paddle
-            - intersects probably won't check for walls though, so perhaps first check that the ball is still in bounds.
-                 - If it's below bounds, game over;
-                 otherwise, calculateAngle() and call moveBall()
-            - double calculateAngle(double angle): decides which angle to reflect based on the angle the ball is
-              as it hits. reset ball.angle.
-                 - perhaps based on the surface type it hits
-                   (ie if it hits a brick, reflect by 180; if a wall, by 90 etc)
-        */
 
 }

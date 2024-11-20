@@ -32,6 +32,7 @@ public class Game {
     }
 
     public void restartGame() {
+        System.out.println("Game.RESTARTGAME");
         inProgress = true;
     }
 
@@ -58,7 +59,6 @@ public class Game {
     public Paddle getPaddle() {
         return paddle;
     }
-
 
     public double getBallToPaddleAngle() {
         double deltaX = paddle.getX() - ball.getX();
@@ -90,6 +90,11 @@ public class Game {
         int rows = width / brickWidth;
         int cols = height / brickHeight / 2;
 
+        if(rows == 0 || cols == 0) {
+            rows = 10;
+            cols = 10;
+        }
+
         for (int y = 0; y < cols; y++) {
             for (int x = 0; x < rows; x++) {
                 addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
@@ -97,6 +102,7 @@ public class Game {
             }
             y += rand.nextInt(spaceBricks);
         }
+        System.out.println("Bricks: " + bricks.size());
     }
 
     public void setBallAngle() {
@@ -125,7 +131,9 @@ public class Game {
 
     private Intersection positionIsWall(int x, int y)
     {
-        if (x <= 1 || y <= 1 || x >= 600) {
+        System.out.println("Intersects check for ball at: x = " + x + ", y = " + y);
+
+        if (x < 0 || y < 0 || x >= 600) {
             return Intersection.WALL;
         } else if (y >= 525) {
             return Intersection.FLOOR;
@@ -157,6 +165,7 @@ public class Game {
     }
 
     public void ballHitNone() {
+        System.out.println("hit none: " + ball.getX() + " " + ball.getY());
         ball.moveBall();
     }
 
@@ -186,7 +195,7 @@ public class Game {
         clearBricks();
         inProgress = false;
         score = 0;
-
+        System.out.println("game over");
     }
 
     public void nextMove(int x, int y) {
