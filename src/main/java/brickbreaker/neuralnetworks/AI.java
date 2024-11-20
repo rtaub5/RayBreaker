@@ -54,19 +54,22 @@ public class AI {
                 controller.movePaddle(VK_RIGHT);
             }
         } */
+        game.restartGame();
         for (int i = 0; i < rounds; i++) {
-            double[] input = new double[1];
-            input[0] = game.getBallToPaddleAngle();
-            double[] answer = neuralNetwork.guess(input);
+            if(game.isInProgress()) {
+                game.nextMove();
+                double[] input = new double[1];
+                input[0] = game.getBallToPaddleAngle();
+                double[] answer = neuralNetwork.guess(input);
 
-            if (answer[0] > answer[1]) {
-                // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
-                game.getPaddle().moveLeft();
-            } else {
-                //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
-                game.getPaddle().moveRight();
+                if (answer[0] > answer[1]) {
+                    // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+                    game.getPaddle().moveLeft();
+                } else {
+                    //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+                    game.getPaddle().moveRight();
+                }
             }
-
         }
 
         System.out.println(game.getScore());

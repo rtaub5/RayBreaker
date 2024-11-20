@@ -15,8 +15,8 @@ public class Game {
     private int score;
 
     public Game() {
-        ball = new Ball(0, 0, 0);
-        paddle = new Paddle(0, 0, 0, 0);
+        ball = new Ball(15, 15, 15);
+        paddle = new Paddle(0, 400, 20, 5);
         bricks = new ArrayList<>();
         inProgress = true;
         score = 0;
@@ -32,6 +32,8 @@ public class Game {
 
     public void restartGame() {
         System.out.println("Game.RESTARTGAME");
+        ball.setX(15);
+        ball.setY(15);
         inProgress = true;
     }
 
@@ -184,6 +186,7 @@ public class Game {
         setAngleFromPaddle(x);
         ball.moveBall();
         score++;
+        System.out.println(score);
     }
 
     public void ballHitFloor() {
@@ -194,10 +197,13 @@ public class Game {
         clearBricks();
         inProgress = false;
         score = 0;
-        System.out.println("game over");
     }
 
-    public void nextMove(int x, int y) {
+    public void nextMove() {
+        System.out.println("next move");
+        int x = (int) ball.getX();
+        int y = (int) ball.getY();
+
         Intersection result = intersects(x, y);
 
         switch (result) {

@@ -85,7 +85,7 @@ public class GameController {
 
     public void moveBall(int x, int y) {
         System.out.println("MOVE BALL: " + x + ", " + y);
-        model.nextMove(x, y);
+        model.nextMove();
         if (!model.isInProgress()) {
             gameOver();
         }
