@@ -24,7 +24,6 @@ public class Game {
 
     public int getScore() {
         return score;
-
     }
 
     public boolean isInProgress() {
@@ -90,10 +89,10 @@ public class Game {
         int rows = width / brickWidth;
         int cols = height / brickHeight / 2;
 
-        if(rows == 0 || cols == 0) {
+      /*  if(rows == 0 || cols == 0) {
             rows = 10;
             cols = 10;
-        }
+        } */
 
         for (int y = 0; y < cols; y++) {
             for (int x = 0; x < rows; x++) {
@@ -133,7 +132,7 @@ public class Game {
     {
         System.out.println("Intersects check for ball at: x = " + x + ", y = " + y);
 
-        if (x < 0 || y < 0 || x >= 600) {
+        if (x < 1 || y < 1 || x >= 600) {
             return Intersection.WALL;
         } else if (y >= 525) {
             return Intersection.FLOOR;
@@ -174,17 +173,17 @@ public class Game {
     }
 
     public void ballHitBrick() {
-        if (bricks.isEmpty()) {
-            gameOver();
-        }
+      /*  if (bricks.isEmpty()) {
+            gameOver(); commenting out to train ai without bricks
+        } */
         setBallAngle();
-        score++;
     }
 
     public void ballHitPaddle(int x) {
         setBallAngle();
         setAngleFromPaddle(x);
         ball.moveBall();
+        score++;
     }
 
     public void ballHitFloor() {
