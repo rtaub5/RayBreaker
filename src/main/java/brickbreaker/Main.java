@@ -12,15 +12,14 @@ public class Main {
     public static void main(String[] args) {
 
 
-        GameFrame game = new GameFrame();
+     /*   GameFrame game = new GameFrame();
         game.setVisible(true);
-
-//        AI ai = new AI(1000);
-//        ArrayList<NeuralNetwork> neuralNetworks = ai.createNetworks();
-//
-//        for (int i = 0; i < 1000; i++) {
-//            neuralNetworks = ai.learnGame(neuralNetworks);
-//        }
+*/
+        AI ai = new AI(1000);
+      ArrayList<NeuralNetwork> neuralNetworks = ai.createNetworks();
+      for (int i = 0; i < 1000; i++) {
+           neuralNetworks = ai.learnGame(neuralNetworks);
+       }
 
      //   adinaMainChanges(); - Doesn't work because trying to access private methods. Try again later
 

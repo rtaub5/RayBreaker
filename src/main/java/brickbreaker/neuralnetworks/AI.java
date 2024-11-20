@@ -11,13 +11,12 @@ import static java.awt.event.KeyEvent.VK_LEFT;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 
 public class AI {
-    private final GameComponent component = new GameComponent();
     private final Game game = new Game();
-    private final GameController controller = new GameController(game, component);
     private ArrayList<Integer[]> scoresPerGen = new ArrayList<>();
 
     private Random random = new Random();
     int count;
+    int rounds = 10000;
 
     public AI(int count) {
         this.count = count;
@@ -27,7 +26,7 @@ public class AI {
         ArrayList<NeuralNetwork> neuralNetworks = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            neuralNetworks.add(new NeuralNetwork(1, 10, 2));
+            neuralNetworks.add(new NeuralNetwork(1, 2, 4, 2));
         }
 
         return neuralNetworks;
@@ -38,9 +37,8 @@ public class AI {
     }
 
     private int play(NeuralNetwork neuralNetwork) {
-        controller.startGame();
 
-        while(game.isInProgress()) {
+        /*while(game.isInProgress()) {
            // System.out.println("Move paddle " + game.getPaddle().getX() + ", " + game.getPaddle().getY());
            // System.out.println("move"); uncommenting either statement leads to statement printing
            //infinitely? no other debug statements print.
@@ -55,10 +53,24 @@ public class AI {
                 //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
                 controller.movePaddle(VK_RIGHT);
             }
+        } */
+        for (int i = 0; i < rounds; i++) {
+            double[] input = new double[1];
+            input[0] = game.getBallToPaddleAngle();
+            double[] answer = neuralNetwork.guess(input);
+
+            if (answer[0] > answer[1]) {
+                // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+                game.getPaddle().moveLeft();
+            } else {
+                //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+                game.getPaddle().moveRight();
+            }
+
         }
 
-        System.out.println(controller.getGame().getScore());
-        return controller.getGame().getScore();
+        System.out.println(game.getScore());
+        return game.getScore();
     }
 
     private ArrayList<NeuralNetwork> getBestPerforming(List<Integer> scores, List<List<NeuralNetwork>>groupedNN)

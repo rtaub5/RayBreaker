@@ -41,7 +41,6 @@ public class GameController {
         } else {
             resumeGame();
         }
-
     }
 
     private void resumeGame() {
@@ -84,7 +83,6 @@ public class GameController {
         paddleTimer.start();
     }
 
-
     public void moveBall(int x, int y) {
         System.out.println("MOVE BALL: " + x + ", " + y);
         model.nextMove(x, y);
@@ -107,7 +105,7 @@ public class GameController {
     }
 
     public void startTimer() {
-        /*timer = new Timer(100, new ActionListener() {
+        timer = new Timer(100, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,20 +114,7 @@ public class GameController {
         });
 
         timer.start();
-        System.out.println("TIMER STARTED"); */
-        System.out.println("Attempting to start ball timer...");
-        if (timer == null || !timer.isRunning()) {
-            timer = new Timer(100, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    moveBall((int) model.getBall().getX(), (int) model.getBall().getY());
-                }
-            });
-            timer.start();
-            System.out.println("Ball timer started.");
-        } else {
-            System.out.println("Ball timer already running.");
-        }
+        System.out.println("TIMER STARTED");
     }
 
     public void stopTimer() {

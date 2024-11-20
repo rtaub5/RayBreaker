@@ -11,7 +11,7 @@ public class Ball extends Ellipse2D.Double
     public Ball(double x, double y, double radius)
     {
         super(x, y, radius, radius);
-        this.angle = 90;
+        this.angle = 45;
         speed = 20;
     }
 

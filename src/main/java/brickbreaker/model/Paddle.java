@@ -20,6 +20,14 @@ public class Paddle extends Rectangle {
         this.direction = direction;
     }
 
+    public void moveLeft() {
+        x -= 1;
+    }
+
+    public void moveRight() {
+        x += 1;
+    }
+
     public void move() {
         if(direction) {
             x += 1; //replace with speed
