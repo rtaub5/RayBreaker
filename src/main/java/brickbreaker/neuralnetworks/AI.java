@@ -4,7 +4,6 @@ import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.GameController;
 import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
-import brickbreaker.view.GameFrame;
 
 import java.util.*;
 

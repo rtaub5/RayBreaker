@@ -1,6 +1,5 @@
 package brickbreakertest;
 
-import brickbreaker.GameController;
 import brickbreaker.model.Ball;
 import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
