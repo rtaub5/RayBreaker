@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/brickbreakertest/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/brickbreakertest/ControllerTest.java" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/AI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/controller/GameController.java" afterDir="false" />
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +80,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
+    "git-widget-placeholder": "adinaController",
+=======
     "git-widget-placeholder": "#17 on adinaNew",
+>>>>>>> main
     "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -83,11 +100,11 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="brickbreaker.Main" />
+      <option name="MAIN_CLASS_NAME" value="brickbreaker.neuralnetworks.Main" />
       <module name="BrickBreaker.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="brickbreaker.*" />
+          <option name="PATTERN" value="brickbreaker.neuralnetworks.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -230,7 +247,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java</url>
-          <line>27</line>
+          <line>26</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>

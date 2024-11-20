@@ -1,10 +1,9 @@
-package brickbreaker;
+package brickbreaker.neuralnetworks;
 
 import basicneuralnetwork.NeuralNetwork;
-import brickbreaker.controller.GameController;
+import brickbreaker.GameController;
+import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
-import brickbreaker.view.GameFrame;
-import java.awt.event.KeyEvent;
 
 import java.util.*;
 
@@ -12,9 +11,10 @@ import static java.awt.event.KeyEvent.VK_LEFT;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 
 public class AI {
-    private final GameFrame frame = new GameFrame();
+    // private final GameFrame frame = new GameFrame();
     private final GameComponent component = new GameComponent();
-    private final GameController controller = new GameController(frame, component);
+    private final Game game = new Game();
+    private final GameController controller = new GameController(game, component);
     int count;
 
     public AI(int count) {

@@ -1,6 +1,6 @@
 package brickbreakertest;
 
-import brickbreaker.controller.GameController;
+import brickbreaker.GameController;
 import brickbreaker.model.Ball;
 import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
@@ -8,7 +8,6 @@ import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 import static org.mockito.Mockito.*;
@@ -24,14 +23,14 @@ public class ControllerTest {
 
     public void movePaddle() {
         GameComponent view = mock();
-        GameFrame model = mock();
+
         Game game = mock();
         Paddle paddle = mock();
 
         doReturn(game).when(view).getGame();
         doReturn(paddle).when(game).getPaddle();
 
-        GameController gameController = new GameController(model, view);
+        GameController gameController = new GameController(game, view);
         // when
         gameController.movePaddle(KeyEvent.VK_RIGHT);
 
