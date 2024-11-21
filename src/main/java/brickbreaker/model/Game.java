@@ -1,10 +1,12 @@
 package brickbreaker.model;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Game {
+public class Game extends Component
+{
     public Ball ball;
     public List<Brick> bricks;
     public Paddle paddle;
@@ -64,8 +66,11 @@ public class Game {
     public double getBallToPaddleAngle() {
         double deltaX = paddle.getX() - ball.getX();
         double deltaY = paddle.getY() - ball.getY();
+
         return Math.atan2(deltaY, deltaX);
     }
+
+
 
     public void setBricks(ArrayList<Brick> bricks) {
         this.bricks = bricks;
@@ -186,6 +191,7 @@ public class Game {
         setAngleFromPaddle(x);
         ball.moveBall();
         score++;
+        System.out.println("SCORED!!!");
         System.out.println(score);
     }
 

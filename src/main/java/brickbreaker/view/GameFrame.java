@@ -77,12 +77,12 @@ public class GameFrame extends JFrame {
             }
         });
 
-        pause.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.stopTimer();
-            }
-        });
+//        pause.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                controller.stopTimer();
+//            }
+//        });
 
       /*  KeyListener keyListener = new KeyListener() {
 

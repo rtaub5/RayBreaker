@@ -20,21 +20,35 @@ public class Paddle extends Rectangle {
         this.direction = direction;
     }
 
-    public void moveLeft() {
+    public int moveLeft() {
+        if (legalMove())
         x -= 1;
+        return x;
     }
 
-    public void moveRight() {
+    public int moveRight() {
+        if (legalMove())
         x += 1;
+        return x;
     }
 
     public void move() {
-        if(direction) {
+        if(direction && legalMove()) {
             x += 1; //replace with speed
         }
-        else {
+        else if (!direction && legalMove()){
             x -= 1;
         }
+    }
+
+    public boolean legalMove()
+    {
+        boolean legal = true;
+        if (x >= (600 - width) || x <= 0)
+        {
+            legal = false;
+        }
+        return legal;
     }
 
     public double getQuarter()
