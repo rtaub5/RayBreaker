@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/brickbreakertest/AITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/brickbreakertest/AITest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +81,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.brickbreaker.Main">
+  <component name="RunManager" selected="Gradle.AITest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="brickbreaker.neuralnetworks.Main" />
       <module name="BrickBreaker.main" />
@@ -112,6 +108,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AITest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;brickbreakertest.AITest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="AITest.learn" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -126,30 +146,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;brickbreakertest.AITest.learn&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="ControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;brickbreakertest.ControllerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -199,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AITest" />
         <item itemvalue="Gradle.AITest.learn" />
         <item itemvalue="Application.brickbreaker.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.ControllerTest.movePaddleLeft" />
-        <item itemvalue="Gradle.ControllerTest" />
       </list>
     </recent_temporary>
   </component>
