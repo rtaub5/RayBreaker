@@ -36,6 +36,23 @@ public class AI {
         return scoresPerGen;
     }
 
+    public int movePaddle(NeuralNetwork neuralNetwork) {
+        int retVal = 0;
+        double[] input = new double[1];
+        input[0] = game.getBallToPaddleAngle();
+        double[] answer = neuralNetwork.guess(input);
+
+        if (answer[0] > answer[1]) {
+            // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+            //game.getPaddle().moveLeft();
+            return 1;
+        } else {
+            //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+            //game.getPaddle().moveRight();
+        }
+        return 0;
+    }
+
     private int play(NeuralNetwork neuralNetwork) {
 
         /*while(game.isInProgress()) {
@@ -57,16 +74,10 @@ public class AI {
         game.restartGame();
         for (int i = 0; i < rounds; i++) {
             if(game.isInProgress()) {
-                game.nextMove();
-                double[] input = new double[1];
-                input[0] = game.getBallToPaddleAngle();
-                double[] answer = neuralNetwork.guess(input);
-
-                if (answer[0] > answer[1]) {
-                    // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+                if(movePaddle(neuralNetwork) == 1) {
                     game.getPaddle().moveLeft();
-                } else {
-                    //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+                }
+                else {
                     game.getPaddle().moveRight();
                 }
             }

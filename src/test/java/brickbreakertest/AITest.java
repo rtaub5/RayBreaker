@@ -13,7 +13,7 @@ public class AITest {
 
     @Test
     public void learn() {
-        AI ai = new AI(1000);
+        AI ai = new AI(1);
         ArrayList<NeuralNetwork> neuralNetworks = ai.createNetworks();
 
         for (int i = 0; i < 5; i++) {

@@ -1,7 +1,9 @@
 package brickbreaker.view;
 
+import brickbreaker.AIController;
 import brickbreaker.GameController;
 import brickbreaker.model.Game;
+import brickbreaker.neuralnetworks.AI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +15,13 @@ import java.awt.event.KeyListener;
 public class GameFrame extends JFrame {
     private Game game;
     private GameComponent component;
-    private GameController controller;
+    private AIController controller;
 
     // Constructor
     public GameFrame() {
         component = new GameComponent();
         game = component.getGame();
-        controller = new GameController(game, component);
+        controller = new AIController(game, component, new AI(1));
         setFrame();
         setVisible(true);
     }
@@ -82,7 +84,7 @@ public class GameFrame extends JFrame {
             }
         });
 
-        KeyListener keyListener = new KeyListener() {
+      /*  KeyListener keyListener = new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -100,7 +102,7 @@ public class GameFrame extends JFrame {
             }
         };
 
-        component.addKeyListener(keyListener);
+        component.addKeyListener(keyListener); */
     }
 
 }
