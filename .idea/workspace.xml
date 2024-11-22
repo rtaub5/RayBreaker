@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/NeuralNetworkScore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/brickbreakertest/AITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/brickbreakertest/AITest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/AIControllerNoGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/AIControllerNoGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,29 +65,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.ControllerTest.movePaddleLeft.executor": "Run",
-    "Gradle.RayBreaker [:brickbreaker.Main.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "testai",
-    "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/Users/rocki/IdeaProjects/RAYBreaker/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.ControllerTest.movePaddleLeft.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RayBreaker [:brickbreaker.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;testai&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/adinagross/IdeaProjects/RayBreaker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/rocki/IdeaProjects/RAYBreaker/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Gradle.AITest">
+}</component>
+  <component name="RunManager" selected="Application.brickbreaker.Main">
+    <configuration name="AI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="brickbreaker.neuralnetworks.AI" />
+      <module name="BrickBreaker.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="brickbreaker.neuralnetworks.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="brickbreaker.neuralnetworks.Main" />
       <module name="BrickBreaker.main" />
@@ -156,30 +175,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ControllerTest.movePaddleLeft" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;brickbreakertest.ControllerTest.movePaddleLeft&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="RAYBreaker" />
       <method v="2">
@@ -195,11 +190,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AI" />
         <item itemvalue="Gradle.AITest" />
         <item itemvalue="Gradle.AITest.learn" />
         <item itemvalue="Application.brickbreaker.Main" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.ControllerTest.movePaddleLeft" />
       </list>
     </recent_temporary>
   </component>
@@ -215,11 +210,23 @@
       <workItem from="1730388294827" duration="461000" />
       <workItem from="1730394602878" duration="1111000" />
       <workItem from="1730419580559" duration="2355000" />
+      <workItem from="1732296844698" duration="4536000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -249,53 +256,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java</url>
-          <line>35</line>
+          <line>46</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java</url>
-          <line>85</line>
+          <line>87</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java</url>
-          <line>51</line>
+          <line>53</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java</url>
-          <line>93</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java</url>
-          <line>38</line>
+          <line>49</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java</url>
-          <line>98</line>
+          <line>100</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="31" />
+          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/AIController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

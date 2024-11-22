@@ -1,6 +1,7 @@
 package brickbreaker.neuralnetworks;
 
 import basicneuralnetwork.NeuralNetwork;
+import brickbreaker.AIControllerNoGui;
 import brickbreaker.GameController;
 import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
@@ -18,9 +19,12 @@ public class AI {
     private ArrayList<Integer[]> scoresPerGen = new ArrayList<>();
 
     private Random random = new Random();
-    Timer paddleTimer;
+    private boolean isRunning = false;
+    private Timer timer;
+    private Timer paddleTimer;
     int count;
     int rounds = 10000;
+    int testRounds = 10;
 
     public AI(int count) {
         this.count = count;
@@ -31,7 +35,8 @@ public class AI {
         ArrayList<NeuralNetwork> neuralNetworks = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            neuralNetworks.add(new NeuralNetwork(1, 2, 4, 2));
+           // neuralNetworks.add(new NeuralNetwork(1, 2, 4, 2));
+            neuralNetworks.add(new NeuralNetwork(2, 2, 4, 2));
         }
 
         return neuralNetworks;
@@ -44,8 +49,9 @@ public class AI {
 
     public int movePaddle(NeuralNetwork neuralNetwork) {
         int retVal = 0;
-        double[] input = new double[1];
+        double[] input = new double[2];
         input[0] = game.getBallToPaddleAngle();
+        input[1] = game.ball.y;
         double[] answer = neuralNetwork.guess(input);
 
         if (answer[0] > answer[1]) {
@@ -78,23 +84,23 @@ public class AI {
                 controller.movePaddle(VK_RIGHT);
             }
         } */
-        game.restartGame();
-        game.getBall().setX(200);
-        game.getBall().setY(200);
-        for (int i = 0; i < rounds; i++) {
-            if(game.isInProgress()) {
-               moveBall((int) game.getBall().getX(), (int) game.getBall().getY());
-
-                movePaddleForAi(neuralNetwork);
-                if(movePaddle(neuralNetwork) == 1 && game.paddle.legalMove()) {
-                    int x = game.getPaddle().moveLeft();
-               //     game.paddle.x = x;
+//        game.restartGame();
+//        game.getBall().setX(200);
+//        game.getBall().setY(200);
+        startGame();
+     //   for (int i = 0; i < rounds; i++) {
+        for (int i = 0; i < 10_000 && game.isInProgress(); i++) {
+          //     moveBall((int) game.getBall().getX(), (int) game.getBall().getY());
+                game.nextMove();
+             //   movePaddleForAi(neuralNetwork);
+                int paddleDecision = movePaddle(neuralNetwork);
+                if(paddleDecision == 1) { //&& game.paddle.legalMove()) {
+                    game.getPaddle().moveLeft();
                 }
-                else if (movePaddle(neuralNetwork) == 0 && game.paddle.legalMove()) {
-                    int x = game.getPaddle().moveRight();
-               //     game.paddle.x = x;
+                else if (paddleDecision == 0)
+                { //&& game.paddle.legalMove()) {
+                    game.getPaddle().moveRight();
                 }
-            }
         }
 
         System.out.println(game.getScore());
@@ -126,20 +132,17 @@ public class AI {
 
     }
 
-    private ArrayList<NeuralNetwork> getBestPerforming(List<Integer> scores, List<List<NeuralNetwork>>groupedNN)
+    private ArrayList<NeuralNetwork> getBestPerforming(List<NeuralNetworkScore> networkScores)
     {
-        List<Integer> sortedScores = new ArrayList<>(scores); //all scores
-        ArrayList<NeuralNetwork> newNeuralNetworks = new ArrayList<>(); //best performing networks
-        Collections.sort(sortedScores, Collections.reverseOrder());
-        for (int ix = 0; ix < sortedScores.size(); ++ix)
+        networkScores.sort(Comparator.comparingDouble(NeuralNetworkScore::getScore).reversed());
+        ArrayList<NeuralNetwork> topNeuralNetworks = new ArrayList<>();
+        for (int i = 0; i < 10; i++)
         {
-            int currHighestScore = sortedScores.get(ix);
-            int indexHighestScore = scores.get(currHighestScore);
-            newNeuralNetworks.addAll(groupedNN.get(indexHighestScore));
+            topNeuralNetworks.add(networkScores.get(i).getNeuralNetwork());
         }
-        return newNeuralNetworks;
-    }
 
+        return topNeuralNetworks;
+    }
     private ArrayList<NeuralNetwork> merge(List<NeuralNetwork> neuralNetworks) {
         ArrayList<NeuralNetwork> newNeuralNetworks = new ArrayList<>();
 
@@ -156,66 +159,24 @@ public class AI {
     }
 
     public ArrayList<NeuralNetwork> learnGame(ArrayList<NeuralNetwork> neuralNetworks) {
-        List<Integer> scores = new ArrayList<>();
-        List<List<NeuralNetwork>> groupedNN = new ArrayList<>();
+        List<NeuralNetworkScore> networkScores = new ArrayList<>();
 
-        for (int i = 0; i < neuralNetworks.size(); i++) {
+        for (NeuralNetwork neuralNetwork : neuralNetworks)
+        {
             System.out.println("new play");
-            int currScore = play(neuralNetworks.get(i));
-
-            if (scores.size() <= currScore)
-            {
-                scores.add(currScore);
-                List<NeuralNetwork> network = new ArrayList<>();
-                network.add(neuralNetworks.get(i));
-                groupedNN.add(network);
-            }
-            else
-            {
-                int currIndex = scores.get(currScore);
-                List<NeuralNetwork> networks = groupedNN.get(currIndex);
-                networks.add(neuralNetworks.get(i));
-                groupedNN.set(currIndex, networks);
-            }
+            int currScore = play(neuralNetwork);
+            NeuralNetworkScore neuralNetworkScore = new NeuralNetworkScore(neuralNetwork, currScore);
+            networkScores.add(neuralNetworkScore);
         }
 
-        scoresPerGen.add(scores.toArray(new Integer[scores.size()]));
-        ArrayList<NeuralNetwork> newNeuralNetworks = getBestPerforming(scores, groupedNN);
-        merge(newNeuralNetworks);
+    //    scoresPerGen.add(scores.toArray(new Integer[scores.size()]));
+        ArrayList<NeuralNetwork> newNeuralNetworks = getBestPerforming(networkScores);
+        newNeuralNetworks = merge(newNeuralNetworks);
         return newNeuralNetworks;
 
     }
 
-    public ArrayList<NeuralNetwork> learnGameFromController(ArrayList<NeuralNetwork> neuralNetworks) {
-        List<Integer> scores = new ArrayList<>();
-        List<List<NeuralNetwork>> groupedNN = new ArrayList<>();
 
-        for (int i = 0; i < neuralNetworks.size(); i++) {
-            System.out.println("new play");
-            int currScore = play(neuralNetworks.get(i));
-
-            if (scores.size() <= currScore)
-            {
-                scores.add(currScore);
-                List<NeuralNetwork> network = new ArrayList<>();
-                network.add(neuralNetworks.get(i));
-                groupedNN.add(network);
-            }
-            else
-            {
-                int currIndex = scores.get(currScore);
-                List<NeuralNetwork> networks = groupedNN.get(currIndex);
-                networks.add(neuralNetworks.get(i));
-                groupedNN.set(currIndex, networks);
-            }
-        }
-
-        scoresPerGen.add(scores.toArray(new Integer[scores.size()]));
-        ArrayList<NeuralNetwork> newNeuralNetworks = getBestPerforming(scores, groupedNN);
-        merge(newNeuralNetworks);
-        return newNeuralNetworks;
-
-    }
 
     public double getAvgScorePerGen(int gen) {
         double sum = 0;
@@ -227,11 +188,64 @@ public class AI {
         return sum / scoresPerGen.get(gen).length;
     }
 
-    public void moveBall(int x, int y) {
-        System.out.println("MOVE BALL: " + x + ", " + y);
-        game.nextMove();
+//    public void moveBall(int x, int y) {
+//        System.out.println("MOVE BALL: " + x + ", " + y);
+//        game.nextMove();
+//
+//
+//    }
 
+    public void startGame() {
+      //  System.out.println("STARTING GAME");
+        game.restartGame();
+        if (!isRunning) {
+            initializeGameState();
+            startTimer();
+            isRunning = true;
+        } else {
+            resumeGame();
+        }
+    }
 
+    public void startTimer() {
+        timer = new Timer(100, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              //  moveBall((int) game.getBall().getX(), (int) game.getBall().getY());
+                game.nextMove();
+            }
+        });
+
+        timer.start();
+   //     System.out.println("TIMER STARTED");
+    }
+
+    public void stopTimer() {
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
+    }
+
+    private void resumeGame() {
+    //    initializePaddle();
+        startTimer();
+    }
+
+    private void initializeGameState() {
+        game.getBall().setX(200);
+        game.getBall().setY(200);
+    }
+
+    public static void main(String[] args)
+    {
+        AI ai = new AI(1000);
+        ArrayList<NeuralNetwork> list = ai.createNetworks();
+        for (int i=0 ; i< 5; i++)
+        {
+            list = ai.learnGame(list);
+        }
+        NeuralNetwork winner = list.get(0);
     }
 
 

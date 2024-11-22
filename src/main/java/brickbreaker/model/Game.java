@@ -67,7 +67,7 @@ public class Game extends Component
         double deltaX = paddle.getX() - ball.getX();
         double deltaY = paddle.getY() - ball.getY();
 
-        return Math.atan2(deltaY, deltaX);
+        return Math.toDegrees(Math.atan2(deltaY, deltaX));
     }
 
 
@@ -137,7 +137,7 @@ public class Game extends Component
 
     private Intersection positionIsWall(int x, int y)
     {
-        System.out.println("Intersects check for ball at: x = " + x + ", y = " + y);
+        //System.out.println("Intersects check for ball at: x = " + x + ", y = " + y);
 
         if (x < 1 || y < 1 || x >= 600) {
             return Intersection.WALL;
@@ -171,7 +171,7 @@ public class Game extends Component
     }
 
     public void ballHitNone() {
-        System.out.println("hit none: " + ball.getX() + " " + ball.getY());
+        //System.out.println("hit none: " + ball.getX() + " " + ball.getY());
         ball.moveBall();
     }
 
@@ -206,7 +206,7 @@ public class Game extends Component
     }
 
     public void nextMove() {
-        System.out.println("next move");
+        //System.out.println("next move");
         int x = (int) ball.getX();
         int y = (int) ball.getY();
 

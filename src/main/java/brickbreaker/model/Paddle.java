@@ -22,13 +22,24 @@ public class Paddle extends Rectangle {
 
     public int moveLeft() {
         if (legalMove())
-        x -= 1;
+        {
+            x -= 1;
+        }
+        else
+        {
+            x += 1;
+        }
         return x;
     }
 
     public int moveRight() {
         if (legalMove())
-        x += 1;
+        {
+            x += 1;
+        }
+        else {
+            x -= 1;
+        }
         return x;
     }
 
@@ -44,7 +55,7 @@ public class Paddle extends Rectangle {
     public boolean legalMove()
     {
         boolean legal = true;
-        if (x >= (600 - width) || x <= 0)
+        if (x >= (600 - width) || x < 0)
         {
             legal = false;
         }

@@ -30,12 +30,14 @@ public class AIController
         this.ai = ai;
         neuralNetworks = ai.createNetworks();
         learn();
+      //  lastNeuralNetwork = neuralNetworks.get(0);
     }
 
     private void learn()
     {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 4; i++) {
             neuralNetworks = ai.learnGame(neuralNetworks);
+
         }
         lastNeuralNetwork = neuralNetworks.get(0);
     }
