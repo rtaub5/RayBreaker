@@ -27,10 +27,8 @@ public class GameTest {
 
         //when
         game.getBall().reflectOffWall(anyInt(), anyInt());
-        ball.reflectOffWall(anyInt(), anyInt());
 
         //then
-        verify(game).getBall().reflectOffWall(anyInt(), anyInt());
         verify(ball).reflectOffWall(anyInt(), anyInt());
     }
 

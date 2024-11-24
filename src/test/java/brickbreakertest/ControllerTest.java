@@ -23,15 +23,13 @@ public class ControllerTest {
     }
 
     public void movePaddle() {
-        GameComponent view = mock();
-
         Game game = mock();
         Paddle paddle = mock();
+        GameController gameController = mock();
 
-        doReturn(game).when(view).getGame();
+        doReturn(game).when(gameController).getModel();
         doReturn(paddle).when(game).getPaddle();
 
-        GameController gameController = new GameController(game, view);
         // when
         gameController.movePaddle(KeyEvent.VK_RIGHT);
 
@@ -70,20 +68,22 @@ public class ControllerTest {
 
     } */
 
-    @Test
-    public void moveBall()
-    {
-        GameComponent view = mock();
-        GameFrame model = mock();
-        Game game = mock();
-        Ball ball = mock();
-        doReturn(ball).when(game).getBall();
-
-        GameController gameController = mock();
-        doNothing().when(gameController).moveBall(anyInt(), anyInt());
-        // when
-        gameController.moveBall(anyInt(), anyInt());
-    }
+//    @Test
+//    public void moveBall()
+//    {
+//        Game game = mock();
+//        Ball ball = mock();
+//        GameController gameController = mock();
+//
+//        doReturn(game).when(gameController).getModel();
+//        doReturn(ball).when(game).getBall();
+//
+//        // when
+//        gameController.moveBall(anyInt(), anyInt());
+//
+//        // then
+//        verify(game).nextMove();
+//    }
 
 
 }

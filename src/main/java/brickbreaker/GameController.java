@@ -23,6 +23,7 @@ public class GameController {
     public boolean isRunning() {
         return isRunning;
     }
+    public Game getModel() { return model; }
 
     public void startGame() {
         model.start();
