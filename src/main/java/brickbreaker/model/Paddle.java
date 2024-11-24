@@ -4,11 +4,12 @@ import java.awt.*;
 
 public class Paddle extends Rectangle {
 
-    //add speed as variable
+    private int speed;
     private Direction direction;
 
     public Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
+        speed = 10;
         direction = Direction.RIGHT;
     }
 
@@ -24,39 +25,16 @@ public class Paddle extends Rectangle {
         }
     }
 
-    public int moveLeft() {
-    //    if (legalMove())
-     //   {
-            x -= 1;
-     //   }
-     //   else
-     //   {
-     //       x += 1;
-      //  }
-        return x;
-    }
-
-    public int moveRight() {
-       if (legalMove())
-      {
-            x += 1;
-        }
-       else {
-           x -= 1;
-        }
-        return x;
-    }
-
     public void move() {
         if(!legalMove())
         {
             changeDirection();
         }
         if (direction == Direction.RIGHT) {
-            x += 1;
+            x += speed / 3;
         }
         else {
-            x -= 1;
+            x -= speed / 3;
         }
     }
 
@@ -69,10 +47,4 @@ public class Paddle extends Rectangle {
         }
         return true;
     }
-
-    public double getQuarter()
-    {
-        return (double) this.width / 4;
-    }
-
 }

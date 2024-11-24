@@ -25,7 +25,6 @@ public class GameController {
     }
 
     private void initializeGameState() {
-        System.out.println("INITIALIZING GAME STATE");
         model.getBall().setX(200);
         model.getBall().setY(200);
         initializePaddle();
@@ -33,7 +32,6 @@ public class GameController {
     }
 
     public void startGame() {
-        System.out.println("STARTING GAME");
         model.restartGame();
         if (!isRunning) {
             initializeGameState();
@@ -85,7 +83,6 @@ public class GameController {
     }
 
     public void moveBall(int x, int y) {
-        System.out.println("MOVE BALL: " + x + ", " + y);
         model.nextMove();
         if (!model.isInProgress()) {
             gameOver();
@@ -115,7 +112,6 @@ public class GameController {
         });
 
         timer.start();
-        System.out.println("TIMER STARTED");
     }
 
     public void stopTimer() {

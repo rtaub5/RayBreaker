@@ -1,6 +1,7 @@
 package brickbreaker.neuralnetworks;
 
 import basicneuralnetwork.NeuralNetwork;
+import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
 
 import javax.swing.Timer;
@@ -45,7 +46,7 @@ public class AI {
         int retVal = 0;
         double[] input = new double[2];
         input[0] = game.getBallToPaddleAngle();
-        input[1] = game.ball.y;
+        input[1] = game.getBall().y;
         double[] answer = neuralNetwork.guess(input);
 
         if (answer[0] > answer[1]) {
@@ -88,13 +89,14 @@ public class AI {
                 game.nextMove();
              //   movePaddleForAi(neuralNetwork);
                 int paddleDecision = movePaddle(neuralNetwork);
-                if(paddleDecision == 1) { //&& game.paddle.legalMove()) {
-                    game.getPaddle().moveLeft();
+                if(paddleDecision == 1) {
+                    game.getPaddle().setDirection(Direction.LEFT);
                 }
                 else if (paddleDecision == 0)
-                { //&& game.paddle.legalMove()) {
-                    game.getPaddle().moveRight();
+                {
+                    game.getPaddle().setDirection(Direction.RIGHT);
                 }
+            game.getPaddle().move();
         }
 
         System.out.println(game.getScore());
@@ -108,18 +110,12 @@ public class AI {
             public void actionPerformed(ActionEvent e)
             {
                 int curr = movePaddle(currNeuralNetwork);
-                if (curr == 1)
-                {
-                    int x =  game.getPaddle().moveLeft();
-                    //    model.paddle.x = x;
+                if (curr == 1) {
+                    game.getPaddle().setDirection(Direction.LEFT);
+                } else {
+                    game.getPaddle().setDirection(Direction.RIGHT);
                 }
-                else
-                {
-                    int x =  game.getPaddle().moveRight();
-                    // model.paddle.x = x;
-                }
-
-
+                game.getPaddle().move();
             }
         });
         paddleTimer.start();

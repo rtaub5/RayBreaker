@@ -12,7 +12,7 @@ public class Ball extends Ellipse2D.Double
     {
         super(x, y, radius, radius);
         angle = 45;
-        speed = 20;
+        speed = 25;
     }
 
     public void setX(int x) {
@@ -31,6 +31,10 @@ public class Ball extends Ellipse2D.Double
     public void setAngle(double angle)
     {
         this.angle = angle;
+    }
+
+    public void reverseBallAngle() {
+        setAngle(angle * -1);
     }
 
     public void moveBall()
@@ -59,10 +63,8 @@ public class Ball extends Ellipse2D.Double
         // If the ball hit the ceiling
         else if (y <= 1)
         {
-            setAngle(angle * -1); // bounce off ceiling
+            reverseBallAngle(); // bounce off ceiling
             moveBall();
         }
     }
-
-
 }

@@ -24,12 +24,13 @@ public class GameTest {
         Game game = mock();
         Ball ball = mock();
         doReturn(ball).when(game).getBall();
+
         //when
-        game.ballHitWall(anyInt(), anyInt());
+        game.getBall().reflectOffWall(anyInt(), anyInt());
         ball.reflectOffWall(anyInt(), anyInt());
 
         //then
-        verify(game).ballHitWall(anyInt(), anyInt());
+        verify(game).getBall().reflectOffWall(anyInt(), anyInt());
         verify(ball).reflectOffWall(anyInt(), anyInt());
     }
 
