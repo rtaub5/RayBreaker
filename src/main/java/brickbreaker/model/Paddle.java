@@ -12,54 +12,58 @@ public class Paddle extends Rectangle {
         direction = true;
     }
 
-    public void changeDirection() {
-        direction = !direction;
-    }
+
 
     public void setDirection(boolean direction) {
         this.direction = direction;
     }
 
     public int moveLeft() {
-        if (legalMove())
-        {
+    //    if (legalMove())
+     //   {
             x -= 1;
-        }
-        else
-        {
-            x += 1;
-        }
+     //   }
+     //   else
+     //   {
+     //       x += 1;
+      //  }
         return x;
     }
 
     public int moveRight() {
-        if (legalMove())
-        {
+       if (legalMove())
+      {
             x += 1;
         }
-        else {
-            x -= 1;
+       else {
+           x -= 1;
         }
         return x;
     }
 
     public void move() {
-        if(direction && legalMove()) {
-            x += 1; //replace with speed
+        if(!legalMove())
+        {
+            direction = !direction;
         }
-        else if (!direction && legalMove()){
+        if (direction) {
+            x += 1;
+        }
+        else {
             x -= 1;
         }
     }
 
     public boolean legalMove()
     {
-        boolean legal = true;
-        if (x >= (600 - width) || x < 0)
-        {
-            legal = false;
+        if (x >= (600 - width) && direction) {
+            return false;
         }
-        return legal;
+        else if( x < 0 && !direction) {
+            return false;
+        }
+
+        return true;
     }
 
     public double getQuarter()

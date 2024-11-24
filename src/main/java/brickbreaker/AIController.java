@@ -122,9 +122,9 @@ public class AIController
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     double paddleX = model.getPaddle().getX();
-                    if (paddleX <= 0 || paddleX + model.getPaddle().getWidth() >= view.getWidth()) {
-                        model.getPaddle().changeDirection();
-                    }
+//                    if (paddleX <= 0 || paddleX + model.getPaddle().getWidth() >= view.getWidth()) {
+//                        model.getPaddle().changeDirection();
+//                    }
                     model.getPaddle().move();
                     view.repaint();
                 }
