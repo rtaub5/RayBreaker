@@ -1,10 +1,12 @@
 package brickbreaker.model;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Game {
+public class Game extends Component
+{
     public Ball ball;
     public List<Brick> bricks;
     public Paddle paddle;
@@ -15,8 +17,8 @@ public class Game {
     private int score;
 
     public Game() {
-        ball = new Ball(0, 0, 0);
-        paddle = new Paddle(0, 0, 0, 0);
+        ball = new Ball(15, 15, 15);
+        paddle = new Paddle(0, 400, 20, 5);
         bricks = new ArrayList<>();
         inProgress = true;
         score = 0;
@@ -24,7 +26,6 @@ public class Game {
 
     public int getScore() {
         return score;
-
     }
 
     public boolean isInProgress() {
@@ -32,6 +33,9 @@ public class Game {
     }
 
     public void restartGame() {
+        System.out.println("Game.RESTARTGAME");
+        ball.setX(15);
+        ball.setY(15);
         inProgress = true;
     }
 
@@ -59,12 +63,14 @@ public class Game {
         return paddle;
     }
 
-
     public double getBallToPaddleAngle() {
         double deltaX = paddle.getX() - ball.getX();
         double deltaY = paddle.getY() - ball.getY();
-        return Math.atan2(deltaY, deltaX);
+
+        return Math.toDegrees(Math.atan2(deltaY, deltaX));
     }
+
+
 
     public void setBricks(ArrayList<Brick> bricks) {
         this.bricks = bricks;
@@ -90,6 +96,11 @@ public class Game {
         int rows = width / brickWidth;
         int cols = height / brickHeight / 2;
 
+      /*  if(rows == 0 || cols == 0) {
+            rows = 10;
+            cols = 10;
+        } */
+
         for (int y = 0; y < cols; y++) {
             for (int x = 0; x < rows; x++) {
                 addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
@@ -97,6 +108,7 @@ public class Game {
             }
             y += rand.nextInt(spaceBricks);
         }
+        System.out.println("Bricks: " + bricks.size());
     }
 
     public void setBallAngle() {
@@ -125,7 +137,9 @@ public class Game {
 
     private Intersection positionIsWall(int x, int y)
     {
-        if (x <= 1 || y <= 1 || x >= 600) {
+        //System.out.println("Intersects check for ball at: x = " + x + ", y = " + y);
+
+        if (x < 1 || y < 1 || x >= 600) {
             return Intersection.WALL;
         } else if (y >= 525) {
             return Intersection.FLOOR;
@@ -157,6 +171,7 @@ public class Game {
     }
 
     public void ballHitNone() {
+        //System.out.println("hit none: " + ball.getX() + " " + ball.getY());
         ball.moveBall();
     }
 
@@ -165,17 +180,19 @@ public class Game {
     }
 
     public void ballHitBrick() {
-        if (bricks.isEmpty()) {
-            gameOver();
-        }
+      /*  if (bricks.isEmpty()) {
+            gameOver(); commenting out to train ai without bricks
+        } */
         setBallAngle();
-        score++;
     }
 
     public void ballHitPaddle(int x) {
         setBallAngle();
         setAngleFromPaddle(x);
         ball.moveBall();
+        score++;
+        System.out.println("SCORED!!!");
+        System.out.println(score);
     }
 
     public void ballHitFloor() {
@@ -186,10 +203,13 @@ public class Game {
         clearBricks();
         inProgress = false;
         score = 0;
-
     }
 
-    public void nextMove(int x, int y) {
+    public void nextMove() {
+        //System.out.println("next move");
+        int x = (int) ball.getX();
+        int y = (int) ball.getY();
+
         Intersection result = intersects(x, y);
 
         switch (result) {

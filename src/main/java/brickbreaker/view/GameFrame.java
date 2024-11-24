@@ -15,6 +15,7 @@ public class GameFrame extends JFrame {
     private GameComponent component;
     private GameController controller;
 
+
     // Constructor
     public GameFrame() {
         component = new GameComponent();

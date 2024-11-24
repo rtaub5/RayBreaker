@@ -2,6 +2,7 @@ package brickbreakertest;
 
 import brickbreaker.GameController;
 import brickbreaker.model.Ball;
+import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
 import brickbreaker.view.GameComponent;
@@ -35,7 +36,7 @@ public class ControllerTest {
         gameController.movePaddle(KeyEvent.VK_RIGHT);
 
         // then
-        verify(paddle).setDirection(true);
+        verify(paddle).setDirection(Direction.RIGHT);
     }
 
    /* public void movePaddleLeft() {

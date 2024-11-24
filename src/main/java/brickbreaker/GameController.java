@@ -1,5 +1,6 @@
 package brickbreaker;
 
+import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
@@ -23,15 +24,16 @@ public class GameController {
         return model;
     }
 
-
     private void initializeGameState() {
-        view.getGame().getBall().setX(200);
-        view.getGame().getBall().setY(200);
+        System.out.println("INITIALIZING GAME STATE");
+        model.getBall().setX(200);
+        model.getBall().setY(200);
         initializePaddle();
         model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
     }
 
     public void startGame() {
+        System.out.println("STARTING GAME");
         model.restartGame();
         if (!isRunning) {
             initializeGameState();
@@ -40,7 +42,6 @@ public class GameController {
         } else {
             resumeGame();
         }
-
     }
 
     private void resumeGame() {
@@ -53,11 +54,11 @@ public class GameController {
         view.requestFocusInWindow();
     }
 
-    public void movePaddle(int keyCode) { // send
+    public void movePaddle(int keyCode) {
         if (keyCode == KeyEvent.VK_RIGHT) {
-            model.getPaddle().setDirection(true);
+            model.getPaddle().setDirection(Direction.RIGHT);
         } else if (keyCode == KeyEvent.VK_LEFT) {
-            model.getPaddle().setDirection(false);
+            model.getPaddle().setDirection(Direction.LEFT);
         }
         startPaddleTimer();
     }
@@ -72,9 +73,9 @@ public class GameController {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     double paddleX = model.getPaddle().getX();
-                    if (paddleX <= 0 || paddleX + model.getPaddle().getWidth() >= view.getWidth()) {
-                        model.getPaddle().changeDirection();
-                    }
+//                    if (paddleX <= 0 || paddleX + model.getPaddle().getWidth() >= view.getWidth()) {
+//                        model.getPaddle().changeDirection();
+//                    }
                     model.getPaddle().move();
                     view.repaint();
                 }
@@ -83,9 +84,9 @@ public class GameController {
         paddleTimer.start();
     }
 
-
     public void moveBall(int x, int y) {
-        model.nextMove(x, y);
+        System.out.println("MOVE BALL: " + x + ", " + y);
+        model.nextMove();
         if (!model.isInProgress()) {
             gameOver();
         }
@@ -114,6 +115,7 @@ public class GameController {
         });
 
         timer.start();
+        System.out.println("TIMER STARTED");
     }
 
     public void stopTimer() {
@@ -121,28 +123,5 @@ public class GameController {
             timer.stop();
         }
     }
-        /*
-        Game logic:
-            - Ball begins somewhere pointed in some direction and keeps moving
-            - when ball hits either: a wall (edge of screen), a brick, or the paddle, it changes its angle
-            - if the ball hits a brick, the brick vanishes
-            - if the ball hits the bottom wall, game is over
-
-        Process (not necessarily in order):
-            - void startGame(): perhaps a button in GameFrame that starts the ball moving (starts timer)
-            - mouseEvent to drag paddle along the bottom of the screen
-            - void moveBall(int x, int y): moves the ball along the screen one pixel (or more) in the ball's current
-              angle
-            - timer event calls moveBall() and checks after or before each move whether it has/will bump into something
-            - this can use Ellipse2D.intersects(x, y, width, height)
-                 - If true: checkObject(): switch case if object is wall, brick, or paddle
-            - intersects probably won't check for walls though, so perhaps first check that the ball is still in bounds.
-                 - If it's below bounds, game over;
-                 otherwise, calculateAngle() and call moveBall()
-            - double calculateAngle(double angle): decides which angle to reflect based on the angle the ball is
-              as it hits. reset ball.angle.
-                 - perhaps based on the surface type it hits
-                   (ie if it hits a brick, reflect by 180; if a wall, by 90 etc)
-        */
 
 }

@@ -44,10 +44,9 @@ public class GameComponent extends JComponent {
 
         g.setColor(Color.RED);
         g2.draw(game.getBall());
-
+        g.setColor(Color.CYAN);
         for (int i = 0; i < game.getBricks().size(); i++) {
             Brick curr = game.getBricks().get(i);
-            g.setColor(colors[rand.nextInt(colors.length)]);
             g2.draw(curr);
         }
     }
