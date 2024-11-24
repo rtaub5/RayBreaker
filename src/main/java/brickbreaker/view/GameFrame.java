@@ -1,10 +1,7 @@
 package brickbreaker.view;
 
-import brickbreaker.AIController;
-import brickbreaker.AIControllerNoGui;
 import brickbreaker.GameController;
 import brickbreaker.model.Game;
-import brickbreaker.neuralnetworks.AI;
 
 import javax.swing.*;
 import java.awt.*;

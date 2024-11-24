@@ -1,5 +1,6 @@
 package brickbreaker;
 
+import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
@@ -55,9 +56,9 @@ public class GameController {
 
     public void movePaddle(int keyCode) {
         if (keyCode == KeyEvent.VK_RIGHT) {
-            model.getPaddle().setDirection(true);
+            model.getPaddle().setDirection(Direction.RIGHT);
         } else if (keyCode == KeyEvent.VK_LEFT) {
-            model.getPaddle().setDirection(false);
+            model.getPaddle().setDirection(Direction.LEFT);
         }
         startPaddleTimer();
     }

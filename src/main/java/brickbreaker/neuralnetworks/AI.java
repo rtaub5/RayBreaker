@@ -1,18 +1,12 @@
 package brickbreaker.neuralnetworks;
 
 import basicneuralnetwork.NeuralNetwork;
-import brickbreaker.AIControllerNoGui;
-import brickbreaker.GameController;
 import brickbreaker.model.Game;
-import brickbreaker.view.GameComponent;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
-import static java.awt.event.KeyEvent.VK_LEFT;
-import static java.awt.event.KeyEvent.VK_RIGHT;
 
 public class AI {
     private final Game game = new Game();
