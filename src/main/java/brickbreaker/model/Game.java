@@ -12,14 +12,16 @@ public class Game extends Component
     private Paddle paddle;
     private int brickPadding = 5;
     private int score;
-    private boolean inProgress;
+    private boolean started;
+    private int rounds;
     private final Random rand = new Random();
 
     public Game() {
         ball = new Ball(300, 400, 15);
         paddle = new Paddle(250, 415, 120, 10);
         bricks = new ArrayList<>();
-        inProgress = true;
+        started = false;
+        rounds = 0;
         score = 0;
     }
 
@@ -32,14 +34,15 @@ public class Game extends Component
     public void addBrick(Brick brick) { bricks.add(brick); }
     public void removeBrick(int ix) { bricks.remove(ix); }
     public void clearBricks() { bricks.clear(); }
-    public boolean isInProgress() { return inProgress; }
-    public int getScore() { return score; }
-
-    public void restartGame() {
-        ball.setX(15);
-        ball.setY(385);
-        inProgress = true;
+    public boolean started() { return started; }
+    public int getRounds() { return rounds; }
+    public void setRounds(int rounds) { this.rounds = rounds; }
+    public void nextRound() { rounds++; }
+    public void start() {
+        started = true;
+        rounds = 0;
     }
+    public int getScore() { return score; }
 
     public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
         int rows = width / brickWidth; // how many bricks can fit across the frame
@@ -52,13 +55,6 @@ public class Game extends Component
             }
             y += rand.nextInt(brickPadding);
         }
-    }
-
-    // For AI - gets angle between ball center and paddle center
-    public double getBallToPaddleAngle() {
-        double deltaX = paddle.getX() - ball.getX();
-        double deltaY = paddle.getY() - ball.getY();
-        return Math.toDegrees(Math.atan2(deltaY, deltaX));
     }
 
     // Determines what kind of object the ball hit and responds
@@ -94,10 +90,10 @@ public class Game extends Component
                 ball.reflectOffWall(x, y);
                 break;
             case FLOOR:
-                gameOver();
+                endGame();
                 break;
             case BRICK:
-                if (bricks.isEmpty()) { gameOver(); }
+                if (bricks.isEmpty()) { endGame(); }
                 ball.reverseBallAngle();
                 break;
             case PADDLE:
@@ -129,10 +125,9 @@ public class Game extends Component
         ball.setAngle(angle);
     }
 
-    private void gameOver() {
+    private void endGame() {
         clearBricks();
-        inProgress = false;
-        score = 0;
+        started = false;
     }
 }
 

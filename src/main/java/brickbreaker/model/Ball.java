@@ -15,19 +15,6 @@ public class Ball extends Ellipse2D.Double
         speed = 25;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public double getAngle()
-    {
-        return angle;
-    }
-
     public void setAngle(double angle)
     {
         this.angle = angle;
