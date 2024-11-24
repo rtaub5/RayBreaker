@@ -3,7 +3,6 @@ package brickbreaker;
 import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
-import brickbreaker.view.GameFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -11,47 +10,27 @@ import java.awt.event.*;
 public class GameController {
     private final Game model;
     private final GameComponent view;
-    private boolean isRunning = false;
+    private boolean isRunning;
     private Timer timer;
     private Timer paddleTimer;
 
     public GameController(Game model, GameComponent view) {
         this.model = model;
         this.view = view;
+        isRunning = false;
     }
 
-    public Game getGame() {
-        return model;
+    public boolean isRunning() {
+        return isRunning;
     }
-
-    private void initializeGameState() {
-        System.out.println("INITIALIZING GAME STATE");
-        model.getBall().setX(200);
-        model.getBall().setY(200);
-        initializePaddle();
-        model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
-    }
+    public Game getModel() { return model; }
 
     public void startGame() {
-        System.out.println("STARTING GAME");
-        model.restartGame();
-        if (!isRunning) {
-            initializeGameState();
-            startTimer();
-            isRunning = true;
-        } else {
-            resumeGame();
-        }
-    }
-
-    private void resumeGame() {
-        initializePaddle();
-        startTimer();
-    }
-
-    public void initializePaddle() {
+        model.start();
         view.setFocusable(true);
         view.requestFocusInWindow();
+        model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
+        startTimer();
     }
 
     public void movePaddle(int keyCode) {
@@ -72,10 +51,6 @@ public class GameController {
             paddleTimer = new Timer(5, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    double paddleX = model.getPaddle().getX();
-//                    if (paddleX <= 0 || paddleX + model.getPaddle().getWidth() >= view.getWidth()) {
-//                        model.getPaddle().changeDirection();
-//                    }
                     model.getPaddle().move();
                     view.repaint();
                 }
@@ -85,43 +60,33 @@ public class GameController {
     }
 
     public void moveBall(int x, int y) {
-        System.out.println("MOVE BALL: " + x + ", " + y);
         model.nextMove();
-        if (!model.isInProgress()) {
+        if (!model.started()) { // if game ended
             gameOver();
         }
         view.repaint();
     }
 
     public void gameOver() {
-        //stop timers, display popup
-        isRunning = false;
         stopTimer();
         view.repaint();
-        System.out.println("Game over.");
-//        int restart = JOptionPane.showConfirmDialog(model, "Would you like to play again?", "Game Over", JOptionPane.YES_NO_OPTION);
-//        if (restart == JOptionPane.YES_OPTION) {
-//            startGame();
-//        }
     }
 
     public void startTimer() {
         timer = new Timer(100, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveBall((int) view.getGame().getBall().getX(), (int) view.getGame().getBall().getY());
             }
         });
-
+        isRunning = true;
         timer.start();
-        System.out.println("TIMER STARTED");
     }
 
     public void stopTimer() {
         if (timer != null && timer.isRunning()) {
             timer.stop();
         }
+        isRunning = false;
     }
-
 }

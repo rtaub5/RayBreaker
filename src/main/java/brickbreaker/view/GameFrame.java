@@ -36,8 +36,6 @@ public class GameFrame extends JFrame {
 
         // Create pre-set fonts
         Font mediumFont = new Font("SansSerif", Font.PLAIN, 25);
-        Font largeFont = new Font("SansSerif", Font.PLAIN, 35);
-        Font largerFont = new Font("SansSerif", Font.PLAIN, 55);
 
         // Set up Views
         JLabel title = new JLabel("Welcome to Brick Breaker!", JLabel.CENTER);
@@ -52,34 +50,39 @@ public class GameFrame extends JFrame {
         JPanel buttonPanel = new JPanel(new BorderLayout());
 
         // Buttons to play and pause
-        JButton play = new JButton("\u25B6"); // Unicode play symbol
-        play.setPreferredSize(new Dimension(80, 50));
-        JButton pause = new JButton("\u23F8"); // Unicode pause symbol
-        pause.setPreferredSize(new Dimension(80, 50));
+        JButton playAndPause = new JButton();
+        playAndPause.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        playAndPause.setPreferredSize(new Dimension(100, 50));
+        playAndPause.setText("Start");
 
-        // Set larger font to enlarge symbols
-        play.setFont(largeFont);
-        pause.setFont(largerFont);
-
-        bottomPanel.add(play);
-        bottomPanel.add(pause);
+        bottomPanel.add(playAndPause);
         buttonPanel.add(bottomPanel, BorderLayout.CENTER);
         pane.add(buttonPanel, BorderLayout.PAGE_END);
         pane.revalidate();
         pane.repaint();
 
         //add action listeners for buttons
-        play.addActionListener(new ActionListener() {
+        playAndPause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.startGame();
-            }
-        });
-
-        pause.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.stopTimer();
+                if (!game.started()) {
+                    if (game.getRounds() == 0) {
+                        controller.startGame();
+                        game.nextRound();
+                        setPauseButton(playAndPause);
+                    }
+                    else { // game is over
+                        askToReplay(playAndPause);
+                        game.setRounds(0);
+                    }
+                } else if (controller.isRunning()) {
+                    controller.stopTimer();
+                    setPlayButton(playAndPause);
+                } else {
+                    component.requestFocusInWindow();
+                    controller.startTimer();
+                    setPauseButton(playAndPause);
+                }
             }
         });
 
@@ -104,4 +107,21 @@ public class GameFrame extends JFrame {
         component.addKeyListener(keyListener);
     }
 
+    public void setPlayButton(JButton button) {
+        button.setFont(new Font("SansSerif", Font.PLAIN, 35));
+        button.setPreferredSize(new Dimension(80, 50));
+        button.setText("\u25B6"); // Unicode play symbol
+    }
+
+    public void setPauseButton(JButton button) {
+        button.setFont(new Font("SansSerif", Font.PLAIN, 55));
+        button.setPreferredSize(new Dimension(80, 50));
+        button.setText("\u23F8"); // Unicode pause symbol
+    }
+
+    public void askToReplay (JButton button) {
+        button.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setText("Play again?");
+    }
 }
