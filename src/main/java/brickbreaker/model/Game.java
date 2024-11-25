@@ -1,6 +1,9 @@
 package brickbreaker.model;
 
+import basicneuralnetwork.NeuralNetwork;
+
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,11 +17,12 @@ public class Game extends Component
     private int score;
     private boolean started;
     private int rounds;
-    private final Random rand = new Random();
+    private final Random rand;
 
-    public Game() {
-        ball = new Ball(300, 400, 15);
-        paddle = new Paddle(250, 415, 120, 10);
+    public Game(Random random) {
+        this.rand = random;
+        ball = new Ball(rand.nextInt(300), 400, 15);
+        paddle = new Paddle(rand.nextInt(250), 415, 120, 10);
         bricks = new ArrayList<>();
         started = false;
         rounds = 0;
@@ -78,7 +82,25 @@ public class Game extends Component
         return Intersection.NONE;
     }
 
+    public void makeMove(NeuralNetwork network) {
+        double[] input = new double[1];
+        input[0] = getBall().x - getPaddle().x;
+        //input[0] = getBallToPaddleAngle();
+        double[] answer = network.guess(input);
+
+        if (answer[0] > answer[1]) {
+            // move paddle left
+            getPaddle().setDirection(Direction.LEFT);
+            getPaddle().move();
+        } else  {
+            // move paddle right
+            getPaddle().setDirection(Direction.RIGHT);
+            getPaddle().move();
+        }
+    }
+
     public void nextMove() {
+
         int x = (int) ball.getX();
         int y = (int) ball.getY();
 
@@ -98,9 +120,10 @@ public class Game extends Component
                 break;
             case PADDLE:
                 ball.reverseBallAngle();
-                setAngleFromPaddle(x);
+                //setAngleFromPaddle(x);
                 ball.moveBall();
                 score++;
+                System.out.println("PADDLE HIT");
                 break;
             default:
                 break;

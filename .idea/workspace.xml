@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/trained.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Ball.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/NeuralNetworkScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/NeuralNetworkScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/brickbreakertest/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/brickbreakertest/GameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +74,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "styleChanges",
+    "git-widget-placeholder": "rockiai1124",
     "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -266,27 +270,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>87</line>
+          <line>100</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>27</line>
+          <line>38</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
