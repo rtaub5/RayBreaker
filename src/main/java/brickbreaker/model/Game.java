@@ -19,6 +19,10 @@ public class Game extends Component
     private int rounds;
     private final Random rand;
 
+    // new variable checks to see if it hits walls in between hitting paddle,
+    // so don't have weird bug
+    private boolean collidesWithBorder = false;
+
     public Game(Random random) {
         this.rand = random;
         ball = new Ball(rand.nextInt(300), 400, 15);
@@ -82,10 +86,11 @@ public class Game extends Component
         return Intersection.NONE;
     }
 
+    // changed input to centerX
     public void makeMove(NeuralNetwork network) {
-        double[] input = new double[1];
-        input[0] = getBall().x - getPaddle().x;
-        //input[0] = getBallToPaddleAngle();
+        double[] input = new double[2];
+        input[0] = ball.getCenterX();
+        input[1] = paddle.getCenterX();
         double[] answer = network.guess(input);
 
         if (answer[0] > answer[1]) {
@@ -110,6 +115,7 @@ public class Game extends Component
                 break;
             case WALL:
                 ball.reflectOffWall(x, y);
+                collidesWithBorder = true;
                 break;
             case FLOOR:
                 endGame();
@@ -122,7 +128,11 @@ public class Game extends Component
                 ball.reverseBallAngle();
                 //setAngleFromPaddle(x);
                 ball.moveBall();
-                score++;
+                if (collidesWithBorder)
+                {
+                    score++;
+                    changeCollide();
+                }
                 System.out.println("PADDLE HIT");
                 break;
             default:
@@ -151,6 +161,17 @@ public class Game extends Component
     private void endGame() {
         clearBricks();
         started = false;
+    }
+
+    // when ball hits paddle, collideswithborder is set to false
+    // Now the ball will need to hit a wall in order to be set to true again
+    // and score more points
+    private void changeCollide()
+    {
+        if(collidesWithBorder)
+            collidesWithBorder = false;
+        else
+            collidesWithBorder = true;
     }
 }
 

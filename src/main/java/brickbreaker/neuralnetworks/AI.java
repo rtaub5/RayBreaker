@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_RIGHT;
+
 public class AI {
     private Game game;
     private ArrayList<Integer[]> scoresPerGen = new ArrayList<>();
@@ -36,8 +39,8 @@ public class AI {
     public ArrayList<NeuralNetwork> createNetworks() {
         ArrayList<NeuralNetwork> neuralNetworks = new ArrayList<>();
         for(int i = 0; i < count; i++) {
-            neuralNetworks.add(new NeuralNetwork(1, 2, 4, 2));
-            // neuralNetworks.add(new NeuralNetwork(2, 2, 4, 2));
+            // now have 2 new input nodes
+            neuralNetworks.add(new NeuralNetwork(2, 2, 4, 2));
         }
         return neuralNetworks;
     }
@@ -59,20 +62,26 @@ public class AI {
     private NeuralNetworkScore play(NeuralNetwork neuralNetwork) {
         long seed = new Random(System.currentTimeMillis()).nextLong();
         random = new Random(seed);
-        /*while(game.isInProgress()) {
+   /*     while(game.isInProgress()) {
            // System.out.println("Move paddle " + game.getPaddle().getX() + ", " + game.getPaddle().getY());
            // System.out.println("move"); uncommenting either statement leads to statement printing
            //infinitely? no other debug statements print.
-            double[] input = new double[1];
-            input[0] = controller.getGame().getBallToPaddleAngle();
+          //  double[] input = new double[1];
+           // input[0] = controller.getGame().getBallToPaddleAngle();
+          //  double[] answer = neuralNetwork.guess(input); */
+       /*     double[] input = new double[2];
+            input[0] = game.getBall().getCenterX();
+            input[1] = game.getPaddle().getCenterX();
             double[] answer = neuralNetwork.guess(input);
 
-            if(answer[0] > answer[1]) {
+           if(answer[0] > answer[1]) {
                // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
-                controller.movePaddle(VK_LEFT);
+               // controller.movePaddle(VK_LEFT);
+               game.getPaddle().setDirection(Direction.LEFT);
             } else {
-                //System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
-                controller.movePaddle(VK_RIGHT);
+               // System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
+               // controller.movePaddle(VK_RIGHT);
+               game.getPaddle().setDirection(Direction.RIGHT);
             }
         } */
 //        game.restartGame();
@@ -93,18 +102,6 @@ public class AI {
         game.makeMove(neuralNetwork);
     }
 
-    private void movePaddleForAi(NeuralNetwork currNeuralNetwork)
-    {
-        paddleTimer = new Timer(5, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                movePaddle(currNeuralNetwork);
-            }
-        });
-        paddleTimer.start();
-
-    }
 
     private ArrayList<NeuralNetwork> getBestPerforming(List<NeuralNetworkScore> networkScores)
     {
@@ -158,11 +155,6 @@ public class AI {
         timer.start();
     }
 
-    public void stopTimer() {
-        if (timer != null && timer.isRunning()) {
-            timer.stop();
-        }
-    }
 
     // For AI - gets angle between ball center and paddle center
     public double getBallToPaddleAngle() {
