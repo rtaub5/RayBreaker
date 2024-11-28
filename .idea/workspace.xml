@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Paddle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trained.json" beforeDir="false" afterPath="$PROJECT_DIR$/trained.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/NeuralNetworkScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/NeuralNetworkScore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +213,8 @@
       <workItem from="1730419580559" duration="2355000" />
       <workItem from="1732296844698" duration="9289000" />
       <workItem from="1732641917635" duration="6000" />
-      <workItem from="1732749879310" duration="3672000" />
+      <workItem from="1732749879310" duration="3935000" />
+      <workItem from="1732826964368" duration="166000" />
     </task>
     <servers />
   </component>
@@ -287,11 +285,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/view/GameFrame.java</url>
           <line>68</line>
           <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/AI.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

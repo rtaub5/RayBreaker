@@ -168,10 +168,14 @@ public class Game extends Component
     // and score more points
     private void changeCollide()
     {
-        if(collidesWithBorder)
+        if (collidesWithBorder)
+        {
             collidesWithBorder = false;
+        }
         else
+        {
             collidesWithBorder = true;
+        }
     }
 }
 

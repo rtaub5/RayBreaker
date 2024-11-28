@@ -62,37 +62,10 @@ public class AI {
     private NeuralNetworkScore play(NeuralNetwork neuralNetwork) {
         long seed = new Random(System.currentTimeMillis()).nextLong();
         random = new Random(seed);
-   /*     while(game.isInProgress()) {
-           // System.out.println("Move paddle " + game.getPaddle().getX() + ", " + game.getPaddle().getY());
-           // System.out.println("move"); uncommenting either statement leads to statement printing
-           //infinitely? no other debug statements print.
-          //  double[] input = new double[1];
-           // input[0] = controller.getGame().getBallToPaddleAngle();
-          //  double[] answer = neuralNetwork.guess(input); */
-       /*     double[] input = new double[2];
-            input[0] = game.getBall().getCenterX();
-            input[1] = game.getPaddle().getCenterX();
-            double[] answer = neuralNetwork.guess(input);
-
-           if(answer[0] > answer[1]) {
-               // System.out.println("Move paddle left " + game.getPaddle().getX() + " " + game.getPaddle().getY());
-               // controller.movePaddle(VK_LEFT);
-               game.getPaddle().setDirection(Direction.LEFT);
-            } else {
-               // System.out.println("Move paddle right " + game.getPaddle().getX() + " " + game.getPaddle().getY());
-               // controller.movePaddle(VK_RIGHT);
-               game.getPaddle().setDirection(Direction.RIGHT);
-            }
-        } */
-//        game.restartGame();
-//        game.getBall().setX(200);
-//        game.getBall().setY(200);
         game = new Game(random);
         startGame();
-        //   for (int i = 0; i < rounds; i++) {
         for (int i = 0; i < 10_000 && game.started(); i++) {
             game.nextMove();
-            //   movePaddleForAi(neuralNetwork);
             movePaddle(neuralNetwork);
         }
         return new NeuralNetworkScore(neuralNetwork, game.getScore(), seed);
@@ -116,7 +89,7 @@ public class AI {
         }
         System.out.println("Score: " + ns.getScore() + " Seed: " + ns.getSeed());
         for (int i = 0; i < 10; i++) {
-            if ( networkScores.get(i).getScore() > 0 )
+            if (networkScores.get(i).getScore() > 0)
             {
                 topNeuralNetworks.add(networkScores.get(i).getNeuralNetwork());
             }
