@@ -7,10 +7,13 @@ public class NeuralNetworkScore
 {
     private NeuralNetwork neuralNetwork;
     private int score;
-    public NeuralNetworkScore(NeuralNetwork network, int score)
+    private long seed;
+
+    public NeuralNetworkScore(NeuralNetwork network, int score, long seed)
     {
         neuralNetwork = network;
         this.score = score;
+        this.seed = seed;
     }
 
     public NeuralNetwork getNeuralNetwork()
@@ -21,5 +24,10 @@ public class NeuralNetworkScore
     public int getScore()
     {
         return score;
+    }
+
+    public long getSeed()
+    {
+        return seed;
     }
 }

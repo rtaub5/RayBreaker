@@ -1,11 +1,13 @@
 package brickbreaker;
 
+import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
 import brickbreaker.view.GameComponent;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class GameController {
     private final Game model;
@@ -14,10 +16,19 @@ public class GameController {
     private Timer timer;
     private Timer paddleTimer;
 
+    private NeuralNetwork network;
+
     public GameController(Game model, GameComponent view) {
         this.model = model;
         this.view = view;
         isRunning = false;
+        try
+        {
+            network = NeuralNetwork.readFromFile("trained.json");
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean isRunning() {
@@ -29,7 +40,7 @@ public class GameController {
         model.start();
         view.setFocusable(true);
         view.requestFocusInWindow();
-        model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
+        //model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
         startTimer();
     }
 
@@ -61,6 +72,8 @@ public class GameController {
 
     public void moveBall(int x, int y) {
         model.nextMove();
+        model.makeMove(network);
+
         if (!model.started()) { // if game ended
             gameOver();
         }

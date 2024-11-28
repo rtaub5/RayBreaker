@@ -13,5 +13,4 @@ public class Main {
         GameFrame game = new GameFrame();
         game.setVisible(true);
     }
-
 }

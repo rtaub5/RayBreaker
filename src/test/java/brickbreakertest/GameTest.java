@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import brickbreaker.view.GameComponent;
 import brickbreaker.view.GameFrame;
+
+import java.util.Random;
+
 import static org.mockito.Mockito.*;
 
 
@@ -47,7 +50,7 @@ public class GameTest {
 
     @Test
     public void intersects() {
-        Game game = new Game();
+        Game game = new Game(new Random());
         game.setBall(new Ball(10, 10, 15));
         game.addBrick(new Brick(10, 10, 15, 5));
         game.setPaddle(new Paddle(20, 5, 15, 5));

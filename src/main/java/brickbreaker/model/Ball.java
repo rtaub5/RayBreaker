@@ -6,13 +6,13 @@ public class Ball extends Ellipse2D.Double
 {
 
     private double angle;
-    private int speed;
+    private final int speed;
 
     public Ball(double x, double y, double radius)
     {
         super(x, y, radius, radius);
         angle = 45;
-        speed = 25;
+        speed = 10;
     }
 
     public void setAngle(double angle)
@@ -30,9 +30,10 @@ public class Ball extends Ellipse2D.Double
          subtract 90 from current angle to account for Java's inverted axis and align angle with trigonometric convention
          multiply by speed to calculate distance the ball will travel within that frame
          */
-        float xDirection = (float) (Math.sin((float) Math.toRadians(angle - 90))
+        // Sine and Cosine are wrong. Cosine is for X and Sine is for Y
+        double xDirection = (Math.sin(Math.toRadians(angle - 90))
                 * speed);
-        float yDirection = (float) (Math.cos((float) Math.toRadians(angle - 90))
+        double yDirection = (Math.cos(Math.toRadians(angle - 90))
                 * -speed);
         // multiply by -speed since y-axis is inverted
         x = (int) (x + xDirection);

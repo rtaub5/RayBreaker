@@ -1,6 +1,9 @@
 package brickbreaker.model;
 
+import basicneuralnetwork.NeuralNetwork;
+
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,11 +17,16 @@ public class Game extends Component
     private int score;
     private boolean started;
     private int rounds;
-    private final Random rand = new Random();
+    private final Random rand;
 
-    public Game() {
-        ball = new Ball(300, 400, 15);
-        paddle = new Paddle(250, 415, 120, 10);
+    // new variable checks to see if it hits walls in between hitting paddle,
+    // so don't have weird bug
+    private boolean collidesWithBorder = false;
+
+    public Game(Random random) {
+        this.rand = random;
+        ball = new Ball(rand.nextInt(300), 400, 15);
+        paddle = new Paddle(rand.nextInt(250), 415, 120, 10);
         bricks = new ArrayList<>();
         started = false;
         rounds = 0;
@@ -78,7 +86,26 @@ public class Game extends Component
         return Intersection.NONE;
     }
 
+    // changed input to centerX
+    public void makeMove(NeuralNetwork network) {
+        double[] input = new double[2];
+        input[0] = ball.getCenterX();
+        input[1] = paddle.getCenterX();
+        double[] answer = network.guess(input);
+
+        if (answer[0] > answer[1]) {
+            // move paddle left
+            getPaddle().setDirection(Direction.LEFT);
+            getPaddle().move();
+        } else  {
+            // move paddle right
+            getPaddle().setDirection(Direction.RIGHT);
+            getPaddle().move();
+        }
+    }
+
     public void nextMove() {
+
         int x = (int) ball.getX();
         int y = (int) ball.getY();
 
@@ -88,6 +115,7 @@ public class Game extends Component
                 break;
             case WALL:
                 ball.reflectOffWall(x, y);
+                collidesWithBorder = true;
                 break;
             case FLOOR:
                 endGame();
@@ -98,9 +126,14 @@ public class Game extends Component
                 break;
             case PADDLE:
                 ball.reverseBallAngle();
-                setAngleFromPaddle(x);
+                //setAngleFromPaddle(x);
                 ball.moveBall();
-                score++;
+                if (collidesWithBorder)
+                {
+                    score++;
+                    changeCollide();
+                }
+                System.out.println("PADDLE HIT");
                 break;
             default:
                 break;
@@ -128,6 +161,21 @@ public class Game extends Component
     private void endGame() {
         clearBricks();
         started = false;
+    }
+
+    // when ball hits paddle, collideswithborder is set to false
+    // Now the ball will need to hit a wall in order to be set to true again
+    // and score more points
+    private void changeCollide()
+    {
+        if (collidesWithBorder)
+        {
+            collidesWithBorder = false;
+        }
+        else
+        {
+            collidesWithBorder = true;
+        }
     }
 }
 
