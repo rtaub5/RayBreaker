@@ -4,40 +4,31 @@ import java.awt.geom.Ellipse2D;
 
 public class Ball extends Ellipse2D.Double
 {
-
-    private double angle;
+    private double dx;
+    private double dy;
     private final int speed;
 
     public Ball(double x, double y, double radius)
     {
         super(x, y, radius, radius);
-        angle = 45;
-        speed = 10;
-    }
-
-    public void setAngle(double angle)
-    {
-        this.angle = angle;
+        dx = 1;
+        dy = 1;
+        speed = 5;
     }
 
     public void reverseBallAngle() {
-        setAngle(angle * -1);
+        dx *= -1;
+        dy *= -1;
     }
 
-    public void moveBall()
-    {
-         /*
-         subtract 90 from current angle to account for Java's inverted axis and align angle with trigonometric convention
-         multiply by speed to calculate distance the ball will travel within that frame
-         */
-        // Sine and Cosine are wrong. Cosine is for X and Sine is for Y
-        double xDirection = (Math.sin(Math.toRadians(angle - 90))
-                * speed);
-        double yDirection = (Math.cos(Math.toRadians(angle - 90))
-                * -speed);
-        // multiply by -speed since y-axis is inverted
-        x = (int) (x + xDirection);
-        y = (int) (y + yDirection);
+    public void moveBall() {
+        x += dx * speed;
+        y += dy * speed;
+    }
+
+    public void setAngle(double angle) {
+        dx = Math.cos(angle);
+        dy = Math.sin(angle);
     }
 
     public void reflectOffWall(int x, int y)
@@ -45,13 +36,13 @@ public class Ball extends Ellipse2D.Double
         // If the ball hit the wall to its left or right
         if (x <= 1 || x >= 600)
         {
-            setAngle(180 - angle); // rotates evenly in opposite direction
+            dx *= -1; // rotates evenly in opposite direction
             moveBall();
         }
         // If the ball hit the ceiling
         else if (y <= 1)
         {
-            reverseBallAngle(); // bounce off ceiling
+            dy *= -1; // bounce off ceiling
             moveBall();
         }
     }

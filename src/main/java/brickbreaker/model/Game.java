@@ -25,7 +25,7 @@ public class Game extends Component
 
     public Game(Random random) {
         this.rand = random;
-        ball = new Ball(rand.nextInt(300), 400, 15);
+        ball = new Ball(rand.nextInt(300), 300, 15);
         paddle = new Paddle(rand.nextInt(250), 415, 120, 10);
         bricks = new ArrayList<>();
         started = false;
@@ -126,12 +126,11 @@ public class Game extends Component
                 break;
             case PADDLE:
                 ball.reverseBallAngle();
-                //setAngleFromPaddle(x);
                 ball.moveBall();
                 if (collidesWithBorder)
                 {
                     score++;
-                    changeCollide();
+                    collidesWithBorder = !collidesWithBorder;
                 }
                 System.out.println("PADDLE HIT");
                 break;
@@ -147,14 +146,15 @@ public class Game extends Component
         double angle = distance;
         int quarter = paddle.width / 4;
         // angle narrows based on area of paddle edge ball hit
-        if (distance < quarter) {
+     /*   if (distance < quarter) {
             angle += 10;
         }
         else if (distance > quarter && distance < (quarter * 3)) {
             angle += 30;
         } else {
             angle += 60;
-        }
+        } */
+        angle = 45; //to train ai
         ball.setAngle(angle);
     }
 
@@ -166,16 +166,6 @@ public class Game extends Component
     // when ball hits paddle, collideswithborder is set to false
     // Now the ball will need to hit a wall in order to be set to true again
     // and score more points
-    private void changeCollide()
-    {
-        if (collidesWithBorder)
-        {
-            collidesWithBorder = false;
-        }
-        else
-        {
-            collidesWithBorder = true;
-        }
-    }
+
 }
 
