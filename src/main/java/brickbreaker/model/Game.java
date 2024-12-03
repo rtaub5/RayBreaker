@@ -25,12 +25,21 @@ public class Game extends Component
 
     public Game(Random random) {
         this.rand = random;
-        ball = new Ball(rand.nextInt(300), 300, 15);
-        paddle = new Paddle(rand.nextInt(250), 415, 120, 10);
+        initializeRandVal();
         bricks = new ArrayList<>();
         started = false;
         rounds = 0;
         score = 0;
+    }
+
+    private void initializeRandVal() {
+        ball = new Ball(rand.nextInt(300), 300, 15);
+        paddle = new Paddle(rand.nextInt(250), 415, 120, 10);
+    }
+
+    public void resetRand(long seed) {
+        rand.setSeed(seed);
+        initializeRandVal();
     }
 
     public void setBall(Ball ball) { this.ball = ball; }
@@ -132,7 +141,6 @@ public class Game extends Component
                     score++;
                     collidesWithBorder = !collidesWithBorder;
                 }
-                System.out.println("PADDLE HIT");
                 break;
             default:
                 break;
@@ -162,10 +170,6 @@ public class Game extends Component
         clearBricks();
         started = false;
     }
-
-    // when ball hits paddle, collideswithborder is set to false
-    // Now the ball will need to hit a wall in order to be set to true again
-    // and score more points
 
 }
 
