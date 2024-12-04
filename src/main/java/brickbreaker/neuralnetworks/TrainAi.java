@@ -22,19 +22,19 @@ public class TrainAi {
 
     public ArrayList<NeuralNetwork> createNetworks() {
         ArrayList<NeuralNetwork> neuralNetworks = new ArrayList<>();
-        for(int i = 0; i < agents; i++) {
+        for (int i = 0; i < agents; i++) {
             neuralNetworks.add(new NeuralNetwork(2, 2, 4, 2));
         }
         return neuralNetworks;
     }
 
     public NeuralNetworkScore play(NeuralNetwork neuralNetwork, long seed) {
-        sim.getGame().resetRand(seed);
-        sim.getGame().start();
+        sim.resetRand(seed);
+        sim.start();
         for (int count = 0; count < 10000 && sim.advance(neuralNetwork); count++) {
         }
 
-        return new NeuralNetworkScore(neuralNetwork, sim.getGame().getScore(), seed);
+        return new NeuralNetworkScore(neuralNetwork, sim.getScore(), seed);
     }
 
     public ArrayList<NeuralNetwork> learnGame(ArrayList<NeuralNetwork> neuralNetworks) {
@@ -89,7 +89,7 @@ public class TrainAi {
 
     public static void main(String[] args)
     {
-        Simulation simulation = new Simulation(new Game(new Random()));
+        Simulation simulation = new Simulation(new Random());
         TrainAi trainAi = new TrainAi(1000, simulation);
         ArrayList<NeuralNetwork> list = trainAi.createNetworks();
         for (int i = 0; i < 5; i++) {

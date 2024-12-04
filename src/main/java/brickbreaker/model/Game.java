@@ -154,7 +154,7 @@ public class Game extends Component
         double angle = distance;
         int quarter = paddle.width / 4;
         // angle narrows based on area of paddle edge ball hit
-     /*   if (distance < quarter) {
+        /*   if (distance < quarter) {
             angle += 10;
         }
         else if (distance > quarter && distance < (quarter * 3)) {

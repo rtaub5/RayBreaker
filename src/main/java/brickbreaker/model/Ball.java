@@ -17,8 +17,8 @@ public class Ball extends Ellipse2D.Double
     }
 
     public void reverseBallAngle() {
-        dx *= -1;
-        dy *= -1;
+        dx = -dx;
+        dy = -dy;
     }
 
     public void moveBall() {
@@ -28,7 +28,7 @@ public class Ball extends Ellipse2D.Double
 
     public void setAngle(double angle) {
         dx = Math.cos(angle);
-        dy = Math.sin(angle);
+        //  dy = Math.sin(angle);
     }
 
     public void reflectOffWall(int x, int y)
@@ -36,13 +36,13 @@ public class Ball extends Ellipse2D.Double
         // If the ball hit the wall to its left or right
         if (x <= 1 || x >= 600)
         {
-            dx *= -1; // rotates evenly in opposite direction
+            dx = -dx; // rotates evenly in opposite direction
             moveBall();
         }
         // If the ball hit the ceiling
         else if (y <= 1)
         {
-            dy *= -1; // bounce off ceiling
+            dy = -dy; // bounce off ceiling
             moveBall();
         }
     }
