@@ -60,7 +60,10 @@ public class Simulation {
         started = true;
         rounds = 0;
     }
-    public int getScore() { return score; }
+
+    public int getScore() {
+        return score;
+    }
 
     // Determines what kind of object the ball hit and responds
     public Intersection intersects(int x, int y) {
@@ -145,7 +148,6 @@ public class Simulation {
         nextMove();
         return started();
     }
-
 
     // methods for bricks
     public void setBricks(ArrayList<Brick> bricks) { this.bricks = bricks; }
