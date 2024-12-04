@@ -70,10 +70,11 @@ public class Simulation {
         // First check if ball hit wall/ceiling or floor
         if (x < 1 || y < 1 || x >= 600) {
             return Intersection.WALL;
-        } else if (y >= 525) {
+        } else if (y >= 525)
+        {
             return Intersection.FLOOR;
-        } // If not, check if ball hit paddle
-        else if (ball.intersects(paddle)) {
+            // If not, check if ball hit paddle
+        } else if (ball.intersects(paddle)) {
             return Intersection.PADDLE;
         } else { // Check if ball hit brick
             for (int i = 0; i < bricks.size(); i++) {
@@ -150,8 +151,14 @@ public class Simulation {
     }
 
     // methods for bricks
-    public void setBricks(ArrayList<Brick> bricks) { this.bricks = bricks; }
-    public List<Brick> getBricks() { return bricks; }
+    public void setBricks(ArrayList<Brick> bricks) {
+        this.bricks = bricks;
+    }
+
+    public List<Brick> getBricks() {
+        return bricks;
+    }
+
     public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
         int rows = width / brickWidth; // how many bricks can fit across the frame
         int cols = height / brickHeight / 2; // how many bricks can fit in top half of frame
