@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/TrainAi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/TrainAi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trained.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/trained.json.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +213,7 @@
       <workItem from="1732641917635" duration="6000" />
       <workItem from="1732749879310" duration="3935000" />
       <workItem from="1732826964368" duration="166000" />
-      <workItem from="1733327131665" duration="1706000" />
+      <workItem from="1733327131665" duration="1939000" />
     </task>
     <servers />
   </component>

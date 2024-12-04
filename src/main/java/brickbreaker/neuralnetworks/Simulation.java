@@ -36,12 +36,25 @@ public class Simulation {
         initializeRandVal();
     }
 
+    public Paddle getPaddle() {
+        return paddle;
+    }
 
-    public Paddle getPaddle() { return paddle; }
-    public void addBrick(Brick brick) { bricks.add(brick); }
-    public void removeBrick(int ix) { bricks.remove(ix); }
-    public void clearBricks() { bricks.clear(); }
-    public boolean started() { return started; }
+    public void addBrick(Brick brick) {
+        bricks.add(brick);
+    }
+
+    public void removeBrick(int ix) {
+        bricks.remove(ix);
+    }
+
+    public void clearBricks() {
+        bricks.clear();
+    }
+
+    public boolean started() {
+        return started;
+    }
 
     public void start() {
         started = true;
@@ -162,11 +175,28 @@ public class Simulation {
         ball.setAngle(angle);
     }
 
-    public int getRounds() { return rounds; }
-    public void setRounds(int rounds) { this.rounds = rounds; }
-    public void nextRound() { rounds++; }
-    public void setBall(Ball ball) { this.ball = ball; }
-    public Ball getBall() { return ball; }
-    public void setPaddle(Paddle paddle) { this.paddle = paddle; }
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
+    }
+
+    public void nextRound() {
+        rounds++;
+    }
+
+    public void setBall(Ball ball) {
+        this.ball = ball;
+    }
+
+    public Ball getBall() {
+        return ball;
+    }
+
+    public void setPaddle(Paddle paddle) {
+        this.paddle = paddle;
+    }
 
 }
