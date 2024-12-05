@@ -1,15 +1,11 @@
-package brickbreaker.model;
+package brickbreaker.neuralnetworks;
 
 import basicneuralnetwork.NeuralNetwork;
+import brickbreaker.model.*;
+import java.util.*;
 
-import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-public class Game extends Component
-{
+public class Simulation {
+    private boolean isRunning;
     private Ball ball;
     private List<Brick> bricks;
     private Paddle paddle;
@@ -18,18 +14,16 @@ public class Game extends Component
     private boolean started;
     private int rounds;
     private final Random rand;
-
-    // new variable checks to see if it hits walls in between hitting paddle,
-    // so don't have weird bug
     private boolean collidesWithBorder = false;
 
-    public Game(Random random) {
-        this.rand = random;
+    public Simulation(Random rand) {
+        this.rand = rand;
         initializeRandVal();
         bricks = new ArrayList<>();
         started = false;
         rounds = 0;
         score = 0;
+        isRunning = false;
     }
 
     private void initializeRandVal() {
@@ -42,36 +36,33 @@ public class Game extends Component
         initializeRandVal();
     }
 
-    public void setBall(Ball ball) { this.ball = ball; }
-    public Ball getBall() { return ball; }
-    public void setPaddle(Paddle paddle) { this.paddle = paddle; }
-    public Paddle getPaddle() { return paddle; }
-    public void setBricks(ArrayList<Brick> bricks) { this.bricks = bricks; }
-    public List<Brick> getBricks() { return bricks; }
-    public void addBrick(Brick brick) { bricks.add(brick); }
-    public void removeBrick(int ix) { bricks.remove(ix); }
-    public void clearBricks() { bricks.clear(); }
-    public boolean started() { return started; }
-    public int getRounds() { return rounds; }
-    public void setRounds(int rounds) { this.rounds = rounds; }
-    public void nextRound() { rounds++; }
+    public Paddle getPaddle() {
+        return paddle;
+    }
+
+    public void addBrick(Brick brick) {
+        bricks.add(brick);
+    }
+
+    public void removeBrick(int ix) {
+        bricks.remove(ix);
+    }
+
+    public void clearBricks() {
+        bricks.clear();
+    }
+
+    public boolean started() {
+        return started;
+    }
+
     public void start() {
         started = true;
         rounds = 0;
     }
-    public int getScore() { return score; }
 
-    public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
-        int rows = width / brickWidth; // how many bricks can fit across the frame
-        int cols = height / brickHeight / 2; // how many bricks can fit in top half of frame
-
-        for (int y = 0; y < cols; y++) {
-            for (int x = 0; x < rows; x++) {
-                addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
-                x += rand.nextInt(brickPadding);
-            }
-            y += rand.nextInt(brickPadding);
-        }
+    public int getScore() {
+        return score;
     }
 
     // Determines what kind of object the ball hit and responds
@@ -79,10 +70,11 @@ public class Game extends Component
         // First check if ball hit wall/ceiling or floor
         if (x < 1 || y < 1 || x >= 600) {
             return Intersection.WALL;
-        } else if (y >= 525) {
+        } else if (y >= 525)
+        {
             return Intersection.FLOOR;
-        } // If not, check if ball hit paddle
-        else if (ball.intersects(paddle)) {
+            // If not, check if ball hit paddle
+        } else if (ball.intersects(paddle)) {
             return Intersection.PADDLE;
         } else { // Check if ball hit brick
             for (int i = 0; i < bricks.size(); i++) {
@@ -147,29 +139,73 @@ public class Game extends Component
         }
     }
 
+    private void endGame() {
+        clearBricks();
+        started = false;
+    }
+
+    public boolean advance(NeuralNetwork neuralNetwork) {
+        makeMove(neuralNetwork);
+        nextMove();
+        return started();
+    }
+
+    // methods for bricks
+    public void setBricks(ArrayList<Brick> bricks) {
+        this.bricks = bricks;
+    }
+
+    public List<Brick> getBricks() {
+        return bricks;
+    }
+
+    public void initializeBricks(int width, int height, int brickWidth, int brickHeight) {
+        int rows = width / brickWidth; // how many bricks can fit across the frame
+        int cols = height / brickHeight / 2; // how many bricks can fit in top half of frame
+
+        for (int y = 0; y < cols; y++) {
+            for (int x = 0; x < rows; x++) {
+                addBrick(new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight));
+                x += rand.nextInt(brickPadding);
+            }
+            y += rand.nextInt(brickPadding);
+        }
+    }
+
+    // unused game methods, saved here for later use
+
     // Reset the angle of the ball based on where it hits the paddle
     public void setAngleFromPaddle(int x)
     {
         int distance = Math.abs(x - paddle.x); // distance between paddle's left edge and ball
         double angle = distance;
         int quarter = paddle.width / 4;
-        // angle narrows based on area of paddle edge ball hit
-        /*   if (distance < quarter) {
-            angle += 10;
-        }
-        else if (distance > quarter && distance < (quarter * 3)) {
-            angle += 30;
-        } else {
-            angle += 60;
-        } */
         angle = 45; //to train ai
         ball.setAngle(angle);
     }
 
-    private void endGame() {
-        clearBricks();
-        started = false;
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
+    }
+
+    public void nextRound() {
+        rounds++;
+    }
+
+    public void setBall(Ball ball) {
+        this.ball = ball;
+    }
+
+    public Ball getBall() {
+        return ball;
+    }
+
+    public void setPaddle(Paddle paddle) {
+        this.paddle = paddle;
     }
 
 }
-

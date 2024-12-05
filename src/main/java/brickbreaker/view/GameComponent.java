@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class GameComponent extends JComponent {
     private Game game;
-    Random rand = new Random(-7760456958180441894L);
+    Random rand = new Random(-2248516281254724516L);
     // private final Color[] colors = new Color[]{Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.GREEN, Color.RED, Color.WHITE};
 
     public GameComponent() {
