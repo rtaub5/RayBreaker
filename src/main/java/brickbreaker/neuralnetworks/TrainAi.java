@@ -1,7 +1,6 @@
 package brickbreaker.neuralnetworks;
 
 import basicneuralnetwork.NeuralNetwork;
-import brickbreaker.model.Game;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -96,6 +95,6 @@ public class TrainAi {
         System.out.println();
         System.out.println("Winner: " + winner.toString());
 
-        trainAi.topNetwork.getNeuralNetwork().writeToFile("trained.json");
+        trainAi.topNetwork.getNeuralNetwork().writeToFile("trained");
     }
 }

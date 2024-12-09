@@ -2,7 +2,6 @@ package brickbreaker.view;
 
 import brickbreaker.model.Ball;
 import brickbreaker.model.Brick;
-import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
 import brickbreaker.neuralnetworks.Simulation;
 

@@ -2,7 +2,6 @@ package brickbreaker;
 
 import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.model.Direction;
-import brickbreaker.model.Game;
 import brickbreaker.neuralnetworks.Simulation;
 import brickbreaker.view.GameComponent;
 

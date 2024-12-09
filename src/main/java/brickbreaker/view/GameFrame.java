@@ -1,7 +1,6 @@
 package brickbreaker.view;
 
 import brickbreaker.GameController;
-import brickbreaker.model.Game;
 import brickbreaker.neuralnetworks.Simulation;
 
 import javax.swing.*;
