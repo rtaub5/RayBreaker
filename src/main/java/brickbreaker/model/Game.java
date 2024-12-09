@@ -18,10 +18,8 @@ public class Game extends Component
     private boolean started;
     private int rounds;
     private final Random rand;
-
-    // new variable checks to see if it hits walls in between hitting paddle,
-    // so don't have weird bug
-    private boolean collidesWithBorder = false;
+    private boolean collidesWithBorder = false; // new variable checks
+    // to see if it hits walls in between hitting paddle, so don't have weird bug
 
     public Game(Random random) {
         this.rand = random;

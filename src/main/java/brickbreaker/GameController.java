@@ -3,6 +3,7 @@ package brickbreaker;
 import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
+import brickbreaker.neuralnetworks.Simulation;
 import brickbreaker.view.GameComponent;
 
 import javax.swing.*;
@@ -10,23 +11,20 @@ import java.awt.event.*;
 import java.io.IOException;
 
 public class GameController {
-    private final Game model;
+    private final Simulation model;
     private final GameComponent view;
     private boolean isRunning;
     private Timer timer;
     private Timer paddleTimer;
-
     private NeuralNetwork network;
 
-    public GameController(Game model, GameComponent view) {
+    public GameController(Simulation model, GameComponent view) {
         this.model = model;
         this.view = view;
         isRunning = false;
-        try
-        {
+        try {
             network = NeuralNetwork.readFromFile("trained.json");
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -34,13 +32,12 @@ public class GameController {
     public boolean isRunning() {
         return isRunning;
     }
-    public Game getModel() { return model; }
+    public Simulation getModel() { return model; }
 
     public void startGame() {
         model.start();
         view.setFocusable(true);
         view.requestFocusInWindow();
-        //model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
         startTimer();
     }
 
