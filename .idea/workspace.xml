@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1a4eda23-018e-43df-89db-27020cac8170" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/neuralnetworks/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brickbreaker/view/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trained.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/trained.json.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,28 +62,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.ControllerTest.movePaddleLeft.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.RayBreaker [:brickbreaker.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;yaelball&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/adinagross/IdeaProjects/RayBreaker&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/rocki/IdeaProjects/RAYBreaker/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.ControllerTest.movePaddleLeft.executor": "Run",
+    "Gradle.RayBreaker [:brickbreaker.Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "adinaNN",
+    "last_opened_file_path": "/Users/adinagross/IdeaProjects/RayBreaker",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/rocki/IdeaProjects/RAYBreaker/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="brickbreaker.model" />
@@ -267,12 +270,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>100</line>
+          <line>97</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brickbreaker/GameController.java</url>
-          <line>38</line>
+          <line>36</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -285,6 +288,20 @@
           <line>68</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/libs/basic_neural_network-v0.5.1-jar-with-dependencies.jar!/basicneuralnetwork/NeuralNetwork.class</url>
+          <line>100</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/libs/basic_neural_network-v0.5.1-jar-with-dependencies.jar!/basicneuralnetwork/NeuralNetwork.class</url>
+          <line>97</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.ejml.MatrixDimensionException" package="org.ejml" />
+          <option name="timeStamp" value="36" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -2,6 +2,7 @@ package brickbreaker.view;
 
 import brickbreaker.GameController;
 import brickbreaker.model.Game;
+import brickbreaker.neuralnetworks.Simulation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,16 +12,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameFrame extends JFrame {
-    private Game game;
+    private Simulation sim;
     private GameComponent component;
     private GameController controller;
-
 
     // Constructor
     public GameFrame() {
         component = new GameComponent();
-        game = component.getGame();
-        controller = new GameController(game, component);
+        sim = component.getGame();
+        controller = new GameController(sim, component);
         setFrame();
         setVisible(true);
     }
@@ -65,15 +65,15 @@ public class GameFrame extends JFrame {
         playAndPause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!game.started()) {
-                    if (game.getRounds() == 0) {
+                if (!sim.started()) {
+                    if (sim.getRounds() == 0) {
                         controller.startGame();
-                        game.nextRound();
+                        sim.nextRound();
                         setPauseButton(playAndPause);
                     }
                     else { // game is over
                         askToReplay(playAndPause);
-                        game.setRounds(0);
+                        sim.setRounds(0);
                     }
                 } else if (controller.isRunning()) {
                     controller.stopTimer();
