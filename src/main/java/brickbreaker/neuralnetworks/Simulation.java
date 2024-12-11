@@ -64,8 +64,10 @@ public class Simulation extends Component {
     public void setBrick(int width, int height) {
         int rows = width / brickWidth; // how many bricks can fit across the frame
         int cols = height / brickHeight / 2; // how many bricks can fit in top half of frame
-        int x = rand.nextInt(0, rows);
-        int y = rand.nextInt(0, cols);
+       // int x = rand.nextInt(0, rows);
+       // int y = rand.nextInt(0, cols);
+        int x = rand.nextInt(rows);
+        int y = rand.nextInt(cols);
         brick = new Brick(x * brickWidth, y * brickHeight, brickWidth, brickHeight);
     }
     public Brick getBrick() {
@@ -183,21 +185,22 @@ public class Simulation extends Component {
             case BRICK:
                 // remove brick and create new
                 hitBrick = true;
-                if (hitPaddle)
-                {
+              //  if (hitPaddle)
+               // {
                     score++; // if hit brick after hitting paddle
-                    hitPaddle = !hitPaddle;
-                }
+                System.out.println("Score!! " + score);
+                 //   hitPaddle = !hitPaddle;
+              //  }
                 this.setBrick(600, 600);
                 ball.reverseBallAngle();
                 break;
             case PADDLE:
                 hitPaddle = true;
-                if (hitBrick)
-                {
-                    score++; // if hit paddle after hitting brick
-                    hitBrick = !hitBrick;
-                }
+               // if (hitBrick)
+               // {
+                //    score++; // if hit paddle after hitting brick
+              //      hitBrick = !hitBrick;
+              //  }
                 ball.reverseBallAngle();
                 ball.moveBall();
                 break;

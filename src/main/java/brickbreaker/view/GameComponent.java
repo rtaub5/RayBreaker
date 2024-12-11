@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class GameComponent extends JComponent {
     private Simulation sim;
-    private final Random rand = new Random(-1157497197998623888L);
+    private final Random rand = new Random(5474326800997930472L);
 
     public GameComponent() {
         sim = new Simulation(rand);

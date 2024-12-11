@@ -23,7 +23,7 @@ public class GameController {
         this.view = view;
         isRunning = false;
         try {
-            network = NeuralNetwork.readFromFile("trained.json");
+            network = NeuralNetwork.readFromFile("trained.json.json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
