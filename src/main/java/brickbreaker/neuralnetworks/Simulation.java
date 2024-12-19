@@ -185,22 +185,22 @@ public class Simulation extends Component {
             case BRICK:
                 // remove brick and create new
                 hitBrick = true;
-              //  if (hitPaddle)
-               // {
-                    score++; // if hit brick after hitting paddle
+                if (hitPaddle)
+                {
+                score++; // if hit brick after hitting paddle
                 System.out.println("Score!! " + score);
-                 //   hitPaddle = !hitPaddle;
-              //  }
+                hitPaddle = !hitPaddle;
+               }
                 this.setBrick(600, 600);
                 ball.reverseBallAngle();
                 break;
             case PADDLE:
                 hitPaddle = true;
-               // if (hitBrick)
-               // {
-                //    score++; // if hit paddle after hitting brick
-              //      hitBrick = !hitBrick;
-              //  }
+                if (hitBrick)
+                {
+                    score++; // if hit paddle after hitting brick
+                    hitBrick = !hitBrick;
+                }
                 ball.reverseBallAngle();
                 ball.moveBall();
                 break;

@@ -51,20 +51,32 @@ public class GameController {
     }
 
     public void stopMovingPaddle() {
-        paddleTimer.stop();
+       // paddleTimer.stop();
+        timer.stop();
     }
 
     private void startPaddleTimer() {
-        if (paddleTimer == null || !paddleTimer.isRunning()) {
-            paddleTimer = new Timer(5, new ActionListener() {
+      //  if (paddleTimer == null || !paddleTimer.isRunning()) {
+        if (timer == null || timer.isRunning()) {
+//            paddleTimer = new Timer(1, new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    model.getPaddle().move();
+//                    view.repaint();
+//                }
+//            });
+            timer.addActionListener(new ActionListener()
+            {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e)
+                {
                     model.getPaddle().move();
                     view.repaint();
                 }
             });
         }
-        paddleTimer.start();
+      //  paddleTimer.start();
+        timer.start();
     }
 
     public void moveBall(int x, int y) {
@@ -83,7 +95,7 @@ public class GameController {
     }
 
     public void startTimer() {
-        timer = new Timer(100, new ActionListener() {
+        timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveBall((int) view.getGame().getBall().getX(), (int) view.getGame().getBall().getY());
