@@ -4,6 +4,8 @@ import brickbreaker.model.Ball;
 import brickbreaker.model.Brick;
 import brickbreaker.model.Game;
 import brickbreaker.model.Paddle;
+import brickbreaker.neuralnetworks.Simulation;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -11,19 +13,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameComponent extends JComponent {
-    private Game game;
-    Random rand = new Random(-2248516281254724516L);
-    // private final Color[] colors = new Color[]{Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.GREEN, Color.RED, Color.WHITE};
+    private Simulation sim;
+    private final Random rand = new Random(-929114778399290665L);
 
     public GameComponent() {
-        game = new Game(rand);
+        sim = new Simulation(rand);
         setBackground(Color.BLACK);
         this.setOpaque(true);
         setBorder(new LineBorder(Color.DARK_GRAY, 1));
     }
 
-    public Game getGame() {
-        return game;
+    public Simulation getGame() {
+        return sim;
     }
 
     @Override
@@ -32,14 +33,19 @@ public class GameComponent extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
 
         g.setColor(Color.WHITE);
-        g2.draw(game.getPaddle());
+        g2.draw(sim.getPaddle());
 
         g.setColor(Color.RED);
-        g2.draw(game.getBall());
+        g2.draw(sim.getBall());
 
         g.setColor(Color.CYAN);
-        for (int i = 0; i < game.getBricks().size(); i++) {
-            Brick brick = game.getBricks().get(i);
+
+        // int numBricks = sim.getBricks().size();
+        int numBricks = 1;
+
+        for (int i = 0; i < numBricks; i++) {
+            // Brick brick = sim.getBricks().get(i);
+            Brick brick = sim.getBrick();
             g2.draw(brick);
         }
     }

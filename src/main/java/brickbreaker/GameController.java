@@ -3,6 +3,7 @@ package brickbreaker;
 import basicneuralnetwork.NeuralNetwork;
 import brickbreaker.model.Direction;
 import brickbreaker.model.Game;
+import brickbreaker.neuralnetworks.Simulation;
 import brickbreaker.view.GameComponent;
 
 import javax.swing.*;
@@ -10,23 +11,20 @@ import java.awt.event.*;
 import java.io.IOException;
 
 public class GameController {
-    private final Game model;
+    private final Simulation model;
     private final GameComponent view;
     private boolean isRunning;
     private Timer timer;
     private Timer paddleTimer;
-
     private NeuralNetwork network;
 
-    public GameController(Game model, GameComponent view) {
+    public GameController(Simulation model, GameComponent view) {
         this.model = model;
         this.view = view;
         isRunning = false;
-        try
-        {
-            network = NeuralNetwork.readFromFile("trained.json");
-        } catch (IOException e)
-        {
+        try {
+            network = NeuralNetwork.readFromFile("trained.json.json");
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -34,13 +32,12 @@ public class GameController {
     public boolean isRunning() {
         return isRunning;
     }
-    public Game getModel() { return model; }
+    public Simulation getModel() { return model; }
 
     public void startGame() {
         model.start();
         view.setFocusable(true);
         view.requestFocusInWindow();
-        //model.initializeBricks(view.getWidth(), view.getHeight(), 40, 20);
         startTimer();
     }
 
@@ -54,20 +51,32 @@ public class GameController {
     }
 
     public void stopMovingPaddle() {
-        paddleTimer.stop();
+       // paddleTimer.stop();
+        timer.stop();
     }
 
     private void startPaddleTimer() {
-        if (paddleTimer == null || !paddleTimer.isRunning()) {
-            paddleTimer = new Timer(5, new ActionListener() {
+      //  if (paddleTimer == null || !paddleTimer.isRunning()) {
+        if (timer == null || timer.isRunning()) {
+//            paddleTimer = new Timer(1, new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    model.getPaddle().move();
+//                    view.repaint();
+//                }
+//            });
+            timer.addActionListener(new ActionListener()
+            {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e)
+                {
                     model.getPaddle().move();
                     view.repaint();
                 }
             });
         }
-        paddleTimer.start();
+      //  paddleTimer.start();
+        timer.start();
     }
 
     public void moveBall(int x, int y) {
@@ -86,7 +95,7 @@ public class GameController {
     }
 
     public void startTimer() {
-        timer = new Timer(100, new ActionListener() {
+        timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveBall((int) view.getGame().getBall().getX(), (int) view.getGame().getBall().getY());
